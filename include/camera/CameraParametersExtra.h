@@ -131,6 +131,11 @@ const char CameraParameters::VIDEO_3840_BY_2160[] = "3840x2160"; \
 const char CameraParameters::ZERO_STR[] = "0"; \
 const char CameraParameters::ZSL_OFF[] = "off"; \
 const char CameraParameters::ZSL_ON[] = "on"; \
+const char CameraParameters::KEY_LGE_CAMERA[] = "lge-camera"; \
+const char CameraParameters::KEY_ISO_MODE[] = "iso"; \
+const char CameraParameters::KEY_SUPPORTED_ISO_MODES[] = "iso-values"; \
+const char CameraParameters::KEY_LGE_ISO_MODE[] = "lg-iso"; \
+const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char BURST_SHOT_OFF[]; \
@@ -249,6 +254,11 @@ const char CameraParameters::ZSL_ON[] = "on"; \
     static const char ZERO_STR[]; \
     static const char ZSL_OFF[]; \
     static const char ZSL_ON[]; \
+    static const char KEY_LGE_CAMERA[]; \
+    static const char KEY_ISO_MODE[]; \
+    static const char KEY_SUPPORTED_ISO_MODES[]; \
+    static const char KEY_LGE_ISO_MODE[]; \
+    static const char KEY_SUPPORTED_LGE_ISO_MODES[];
 
 /* TODO: Add int compatibility
 #define CAMERA_PARAMETERS_EXTRA_C \

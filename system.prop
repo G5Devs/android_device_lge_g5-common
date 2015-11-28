@@ -20,10 +20,10 @@ ro.audio.flinger_standbytime_ms=300
 ro.bt.bdaddr_path="/data/misc/bdaddr"
 
 # Camera
-camera2.portability.force_api=2
+camera2.portability.force_api=1
 persist.camera.global.debug=1
 persist.camera.sensor.debug=1
-persist.camera.HAL3.enabled=1
+persist.camera.HAL3.enabled=0
 persist.camera.dual.camera=1
 ro.camera.notify_nfc=1
 
