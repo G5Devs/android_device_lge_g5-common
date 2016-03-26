@@ -119,14 +119,6 @@ PRODUCT_PACKAGES += \
     hwaddrs
 
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
-    system/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-    system/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-    system/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
-    system/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
-    system/bluetooth/data/stack.conf:system/etc/bluetooth/stack.conf
-
-PRODUCT_COPY_FILES += \
     device/lge/g5/configs/hcidump.sh:system/etc/hcidump.sh \
     device/lge/g5/configs/hsic.control.bt.sh:system/etc/hsic.control.bt.sh
 
@@ -284,9 +276,9 @@ PRODUCT_COPY_FILES += \
 
 # WiFi
 PRODUCT_COPY_FILES += \
-    device/samsung/heroqlte/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
-    device/samsung/heroqlte/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/samsung/heroqlte/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_wlan_nv.bin
+    device/lge/g5/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
+    device/lge/g5/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/lge/g5/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     libqsap_sdk \
