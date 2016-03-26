@@ -74,7 +74,7 @@ while read pcm_entry; do
 done < $pcm_file
 
 echo ${dev_ids[0]}" "${dev_ids[1]}" "${cards[0]}" "${cards[1]}>$pcm_ind_file
-chmod 0644 $pcm_ind_file
+chmod -h 0644 $pcm_ind_file
 
 # Post-boot start of selected USF based calculators
 for i in $(cat $dir0/auto_start.txt); do

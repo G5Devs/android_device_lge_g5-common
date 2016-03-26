@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mixer>
+    <path name="afe-proxy-playback afe-proxy">
+    </path>
+
+    <path name="afe-proxy-record afe-proxy">
+    </path>
+
+    <path name="voice-rx">
+    </path>
+
+    <path name="voice-tx">
+    </path>
+
+<!-- for bt-sco combo path -->
+    <path name="deep-buffer-playback bt-sco-and-speaker">
+        <path name="deep-buffer-playback bt-sco" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-and-speaker">
+        <path name="low-latency-playback bt-sco" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="deep-buffer-playback bt-sco-and-headphones">
+        <path name="deep-buffer-playback bt-sco" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-and-headphones">
+        <path name="low-latency-playback bt-sco" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="deep-buffer-playback bt-sco-and-headphones-and-speaker">
+        <path name="deep-buffer-playback bt-sco" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-and-headphones-and-speaker">
+        <path name="low-latency-playback bt-sco" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="deep-buffer-playback bt-sco-wb-and-speaker">
+        <path name="deep-buffer-playback bt-sco-wb" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-wb-and-speaker">
+        <path name="low-latency-playback bt-sco-wb" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="deep-buffer-playback bt-sco-wb-and-headphones">
+        <path name="deep-buffer-playback bt-sco-wb" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-wb-and-headphones">
+        <path name="low-latency-playback bt-sco-wb" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="deep-buffer-playback bt-sco-wb-and-headphones-and-speaker">
+        <path name="deep-buffer-playback bt-sco-wb" />
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="low-latency-playback bt-sco-wb-and-headphones-and-speaker">
+        <path name="low-latency-playback bt-sco-wb" />
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="voice-call bt-sco-and-speaker">
+        <path name="voice-call bt-sco" />
+    </path>
+
+    <path name="voice-call bt-sco-wb-and-speaker">
+        <path name="voice-call bt-sco-wb" />
+    </path>
+
+    <path name="volte-call bt-sco-and-speaker">
+        <path name="volte-call bt-sco" />
+    </path>
+
+    <path name="volte-call bt-sco-wb-and-speaker">
+        <path name="volte-call bt-sco-wb" />
+    </path>
+
+    <path name="voicemmode1-call bt-sco-and-speaker">
+        <path name="voicemmode1-call bt-sco" />
+    </path>
+
+    <path name="voicemmode1-call bt-sco-wb-and-speaker">
+        <path name="voicemmode1-call bt-sco-wb" />
+    </path>
+
+    <path name="voicemmode2-call bt-sco-and-speaker">
+        <path name="voicemmode2-call bt-sco" />
+    </path>
+
+    <path name="voicemmode2-call bt-sco-wb-and-speaker">
+        <path name="voicemmode2-call bt-sco-wb" />
+    </path>
+
+<!-- voip loopback -->
+    <path name="voip-loopback">
+        <ctl name="SLIM_0_RX_Voice Mixer Voip" value="1" />
+        <ctl name="Voip_Tx Mixer SLIM_0_TX_Voip" value="1" />
+    </path>
+
+    <path name="voip-loopback bt-sco">
+        <ctl name="AUX_PCM_RX_Voice Mixer Voip" value="1" />
+        <ctl name="Voip_Tx Mixer AUX_PCM_TX_Voip" value="1" />
+    </path>
+
+    <path name="voip-loopback bt-sco-wb">
+        <ctl name="AUX PCM SampleRate" value="16000" />
+        <path name="voip-loopback bt-sco" />
+    </path>
+
+<!-- incall music  begins -->
+    <path name="incall-music">
+        <ctl name="Incall_Music Audio Mixer MultiMedia1" value="1" />
+    </path>
+
+    <path name="incall-music bt-sco">
+        <path name="incall-music" />
+    </path>
+
+    <path name="incall-music bt-sco-wb">
+        <path name="incall-music" />
+    </path>
+
+    <path name="incall-music afe-proxy">
+        <path name="incall-music" />
+    </path>
+
+    <path name="incall-music usb-headphones">
+        <path name="incall-music" />
+    </path>
+
+    <path name="incall-music hdmi">
+        <path name="incall-music" />
+    </path>
+
+    <path name="incall_music_uplink">
+        <ctl name="Incall_Music Audio Mixer MultiMedia2" value="1" />
+    </path>
+
+    <path name="incall_music_uplink bt-sco">
+        <path name="incall_music_uplink" />
+    </path>
+
+    <path name="incall_music_uplink bt-sco-wb">
+        <path name="incall_music_uplink" />
+    </path>
+
+    <path name="incall_music_uplink afe-proxy">
+        <path name="incall_music_uplink" />
+    </path>
+
+    <path name="incall_music_uplink usb-headphones">
+        <path name="incall_music_uplink" />
+    </path>
+
+    <path name="incall_music_uplink hdmi">
+        <path name="incall_music_uplink" />
+    </path>
+
+    <path name="incall_music_uplink2">
+        <ctl name="Incall_Music_2 Audio Mixer MultiMedia9" value="1" />
+    </path>
+
+    <path name="incall_music_uplink2 bt-sco">
+        <path name="incall_music_uplink2" />
+    </path>
+
+    <path name="incall_music_uplink2 bt-sco-wb">
+        <path name="incall_music_uplink2" />
+    </path>
+
+    <path name="incall_music_uplink2 afe-proxy">
+        <path name="incall_music_uplink2" />
+    </path>
+
+    <path name="incall_music_uplink2 usb-headphones">
+        <path name="incall_music_uplink2" />
+    </path>
+
+    <path name="incall_music_uplink2 hdmi">
+        <path name="incall_music_uplink2" />
+    </path>
+
+<!-- voice chat for music share begins -->
+    <path name="voice-chat">
+        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia2" value="1" />
+    </path>
+
+<!-- for Dual Audio  -->
+    <path name="dual-audio afe-proxy">
+        <ctl name="AFE_PCM_RX Audio Mixer MultiMedia2" value="1" />
+    </path>
+
+    <path name="dual-audio hdmi">
+        <ctl name="HDMI Mixer MultiMedia2" value="1" />
+    </path>
+
+    <path name="dual-audio">
+    </path>
+
+<!-- These are LG actual sound device specific mixer settings -->
+<!-- LG RX device -->
+    <path name="handset-hac">
+        <path name="handset" />
+        <ctl name="RX INT8_1 MIX1 INP0" value="RX0" />
+        <ctl name="RX8 Digital Volume" value="84" />
+        <ctl name="IIR0 INP0 Volume" value="62" />
+        <ctl name="RX INT0 MIX2 INP" value="SRC0" />
+    </path>
+
+    <path name="handset-aat">
+        <path name="handset" />
+    </path>
+
+    <path name="headset-aat">
+        <path name="headphones" />
+    </path>
+
+    <path name="speaker-aat">
+        <path name="speaker-mono" />
+    </path>
+
+    <path name="handset-vc-clean">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-vc-soft">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-vc-smooth">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-vc">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-clean">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-soft">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="handset-smooth">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="speaker-vc">
+        <path name="voice-speaker-protected" />
+        <ctl name="RX7 Digital Volume" value="84" />
+    </path>
+
+    <path name="fake_speaker">
+        <path name="speaker-mono" />
+        <ctl name="RX7 Digital Volume" value="0" />
+    </path>
+
+    <path name="headphones-advanced">
+        <path name="headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphones-aux">
+        <path name="headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="voice-headphones-advanced">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="voice-headphones-aux">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphones-advanced-44.1">
+        <path name="headphones-44.1" />
+        <ctl name="RX1 Digital Volume" value="74" />
+        <ctl name="RX2 Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphones-aux-44.1">
+        <path name="headphones-44.1" />
+        <ctl name="RX1 Digital Volume" value="74" />
+        <ctl name="RX2 Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphone-24bit">
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
+        <ctl name="SLIM RX0 MUX" value="AIF_MIX1_PB" />
+        <ctl name="SLIM RX1 MUX" value="AIF_MIX1_PB" />
+        <ctl name="SLIM_0_RX Channels" value="Two" />
+        <ctl name="RX INT1_2 MUX" value="RX0" />
+        <ctl name="RX INT2_2 MUX" value="RX1" />
+        <ctl name="RX INT1 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="RX INT2 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphone-24bit-advanced">
+        <path name="headphone-24bit" />
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="headphone-24bit-aux">
+        <path name="headphone-24bit" />
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="bt-sco-and-speaker">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
+        <path name="speaker-mono" />
+    </path>
+
+    <path name="bt-sco-wb-and-speaker">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
+        <path name="speaker-mono" />
+    </path>
+
+    <path name="bt-sco-and-headphones">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
+        <path name="headphones" />
+    </path>
+
+    <path name="bt-sco-wb-and-headphones">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
+        <path name="headphones" />
+    </path>
+
+    <path name="bt-sco-and-headphones-and-speaker">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
+        <path name="speaker-and-headphones" />
+    </path>
+
+    <path name="bt-sco-wb-and-headphones-and-speaker">
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
+        <path name="speaker-and-headphones" />
+    </path>
+
+    <path name="loopback-earpiece">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="79" />
+        <ctl name="EAR PA Gain" value="G_6_DB" />
+    </path>
+
+    <path name="loopback-speaker">
+        <path name="speaker-mono" />
+        <ctl name="RX7 Digital Volume" value="84" />
+    </path>
+
+    <path name="loopback-headphones">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="loopback-bt">
+    </path>
+
+    <path name="voip-earpiece">
+        <path name="handset" />
+        <ctl name="RX0 Digital Volume" value="84" />
+        <ctl name="EAR PA Gain" value="POS_6_DB" />
+    </path>
+
+    <path name="voip-speaker">
+        <path name="voice-speaker-protected" />
+        <ctl name="RX7 Digital Volume" value="84" />
+    </path>
+
+    <path name="voip-headphones">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="voip-headphones-advanced">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+    <path name="voip-headphones-aux">
+        <path name="voice-headphones" />
+        <ctl name="RX1 Mix Digital Volume" value="84" />
+        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </path>
+
+<!-- LG TX device -->
+    <path name="handset-mic-vr">
+        <path name="handset-mic" />
+        <ctl name="DEC7 Volume" value="91" />
+    </path>
+
+    <path name="headset-mic-vr">
+        <path name="headset-mic" />
+        <ctl name="DEC0 Volume" value="86" />
+        <ctl name="ADC2 Volume" value="12" />
+    </path>
+
+    <path name="submic-1">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+    <path name="submic-2">
+        <path name="dmic1" />
+    </path>
+
+    <path name="qvoice-mic">
+        <path name="dmic-endfire" />
+        <ctl name="DEC7 Volume" value="93" />
+        <ctl name="DEC8 Volume" value="93" />
+    </path>
+
+    <path name="vr-mic">
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="SLIM_0_TX Channels" value="Two" />
+        <ctl name="DEC7 Volume" value="109" />
+        <ctl name="DEC8 Volume" value="109" />
+    </path>
+
+<!-- depending on dual mic -->
+    <path name="camcorder-0">
+        <ctl name="SLIM_0_TX Channels" value="Two" />
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+<!-- depending on dual mic -->
+    <path name="camcorder-90">
+        <ctl name="SLIM_0_TX Channels" value="Two" />
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+<!-- depending on dual mic -->
+    <path name="camcorder-180">
+        <ctl name="SLIM_0_TX Channels" value="Two" />
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+<!-- depending on dual mic -->
+    <path name="camcorder-270">
+        <ctl name="SLIM_0_TX Channels" value="Two" />
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+
+    <path name="headset-camcorder-mic">
+        <path name="adc2" />
+        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="ADC2 Volume" value="10" />
+    </path>
+
+    <path name="voice-memo-8K">
+        <path name="handset-mic" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+    <path name="voice-memo">
+        <path name="handset-mic" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+    <path name="headset-voice-memo-8k">
+        <path name="adc2" />
+        <ctl name="ADC2 Volume" value="7" />
+        <ctl name="DEC0 Volume" value="84" />
+    </path>
+
+    <path name="headset-voice-memo">
+        <path name="adc2" />
+        <ctl name="ADC2 Volume" value="7" />
+        <ctl name="DEC0 Volume" value="84" />
+    </path>
+
+    <path name="bt-sco-mic-nrec-wb">
+    </path>
+
+    <path name="bt-sco-mic-nrec">
+    </path>
+
+     <path name="voice-speaker-dmic-ef-nxp">
+        <path name="speaker-dmic-endfire" />
+        <ctl name="IIR1 INP1 MUX" value="DEC7" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+
+    <path name="voice-headset-mic-fluence">
+        <path name="headset-mic" />
+        <ctl name="DEC0 Volume" value="86" />
+        <ctl name="ADC2 Volume" value="12" />
+    </path>
+
+    <path name="loopback-speaker-mic">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+    <path name="loopback-headset-mic">
+        <path name="headset-mic" />
+        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="ADC2 Volume" value="8" />
+    </path>
+
+    <path name="loopback-handset-mic">
+        <path name="handset-mic" />
+        <ctl name="DEC7 Volume" value="90" />
+    </path>
+
+    <path name="loopback-submic1">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+    <path name="loopback-submic2">
+        <path name="dmic1" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+<!-- speaker loopback use submic3 for h1 -->
+    <path name="loopback-submic3">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+     <path name="loopback-bt-mic">
+    </path>
+
+    <path name="mictest-handset-mic">
+        <path name="dmic1" />
+        <ctl name="DEC7 Volume" value="97" />
+    </path>
+
+    <path name="mictest-submic1">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="97" />
+    </path>
+
+     <path name="mictest-submic2">
+        <path name="dmic1" />
+        <ctl name="DEC7 Volume" value="90" />
+    </path>
+
+    <path name="mictest-submic3">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="90" />
+    </path>
+
+    <path name="mictest-headset-mic">
+         <path name="headset-mic" />
+    </path>
+
+    <path name="mictest-allmic">
+        <ctl name="AIF1_CAP Mixer SLIM TX5" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX6" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
+        <ctl name="SLIM_0_TX Channels" value="Four" />
+        <ctl name="SLIM TX5 MUX" value="DEC5" />
+        <ctl name="ADC MUX5" value="DMIC" />
+        <ctl name="DMIC MUX5" value="DMIC0" />
+        <ctl name="SLIM TX6 MUX" value="DEC6" />
+        <ctl name="ADC MUX6" value="DMIC" />
+        <ctl name="DMIC MUX6" value="DMIC2" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="ADC MUX7" value="DMIC" />
+        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="SLIM TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="AMIC" />
+        <ctl name="AMIC MUX8" value="ADC2" />
+        <ctl name="DEC5 Volume" value="90" />
+        <ctl name="DEC6 Volume" value="90" />
+        <ctl name="DEC7 Volume" value="90" />
+        <ctl name="DEC8 Volume" value="90" />
+    </path>
+
+    <path name="voice-call-handset-mic">
+        <path name="dmic1" />
+        <ctl name="DEC7 Volume" value="85" />
+    </path>
+
+    <path name="voice-call-submic1">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="85" />
+    </path>
+
+    <path name="voice-call-submic2">
+        <path name="dmic1" />
+        <ctl name="DEC7 Volume" value="85" />
+    </path>
+
+    <path name="voice-call-submic3">
+        <path name="dmic3" />
+        <ctl name="DEC7 Volume" value="85" />
+    </path>
+
+    <path name="voip-speaker-mic">
+        <path name="speaker-mic" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+<!-- depending on dual mic -->
+    <path name="voip-speaker-dmic-ef">
+        <path name="speaker-dmic-endfire" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+
+<!-- depending on dual mic -->
+    <path name="voip-speaker-dmic-ef-nxp">
+        <path name="speaker-dmic-endfire" />
+        <ctl name="IIR1 INP1 MUX" value="DEC7" />
+        <ctl name="DEC7 Volume" value="84" />
+        <ctl name="DEC8 Volume" value="84" />
+    </path>
+
+    <path name="voip-handset-mic">
+        <path name="handset-mic" />
+        <ctl name="DEC7 Volume" value="84" />
+    </path>
+
+<!-- depending on dual mic -->
+    <path name="voip-dmic-ef">
+        <path name="dmic-endfire" />
+        <ctl name="ADC4 Volume" value="12" />
+        <ctl name="DEC3 Volume" value="84" />
+        <ctl name="ADC3 Volume" value="12" />
+        <ctl name="DEC4 Volume" value="84" />
+    </path>
+
+    <path name="voip-headset-mic">
+        <path name="headset-mic" />
+        <ctl name="ADC2 Volume" value="16" />
+        <ctl name="DEC0 Volume" value="84" />
+    </path>
+</mixer>

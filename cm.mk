@@ -25,7 +25,7 @@ $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 PRODUCT_NAME := cm_g5
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_DEVICE= \
-    PRODUCT_NAME= \
-    BUILD_FINGERPRINT= \
-    PRIVATE_BUILD_DESC=
+    PRODUCT_DEVICE="g5" \
+    PRODUCT_NAME="g5_global_com" \
+    BUILD_FINGERPRINT="h1_global_com-user 6.0.1 MMB29M 160480003069c release-keys" \
+    PRIVATE_BUILD_DESC="lge/h1_global_com/h1:6.0.1/MMB29M/160480003069c:user/release-keys"

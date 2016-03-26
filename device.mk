@@ -97,18 +97,12 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     device/lge/g5/audio/audio_effects.conf:system/etc/audio_effects.conf \
-    device/lge/g5/audio/audio_output_policy.conf:system/etc/audio_output_policy.conf \
-    device/lge/g5/audio/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     device/lge/g5/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     device/lge/g5/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/lge/g5/audio/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
+    device/lge/g5/audio/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
     device/lge/g5/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
-    device/lge/g5/audio/mixer_paths_dtp.xml:system/etc/mixer_paths_dtp.xml \
-    device/lge/g5/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
-    device/lge/g5/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
-    device/lge/g5/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-    device/lge/g5/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     device/lge/g5/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     device/lge/g5/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
     device/lge/g5/configs/usf_post_boot.sh:system/etc/usf_post_boot.sh \
@@ -119,7 +113,9 @@ PRODUCT_PACKAGES += \
     hwaddrs
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/hcidump.sh:system/etc/hcidump.sh \
+    device/lge/g5/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+PRODUCT_COPY_FILES += \
     device/lge/g5/configs/hsic.control.bt.sh:system/etc/hsic.control.bt.sh
 
 # Charger
@@ -218,6 +214,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
+    device/lge/g5/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+    device/lge/g5/configs/libnfc-nxp-hk-h860n.conf:system/etc/libnfc-nxp-hk-h860n.conf \
+    device/lge/g5/configs/libnfc-nxp-lg.conf:system/etc/libnfc-nxp-lg.conf \
+    device/lge/g5/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
@@ -243,43 +243,33 @@ PRODUCT_PACKAGES += \
 
 # Qualcomm Configs
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf \
-    device/lge/g5/configs/qca6234-service.sh:system/etc/qca6234-service.sh
+    device/lge/g5/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
 
 # Scripts
 PRODUCT_COPY_FILES += \
     device/lge/g5/scripts/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
     device/lge/g5/scripts/init.crda.sh:system/etc/init.crda.sh \
-    device/lge/g5/scripts/init.qcom.audio.sh:system/etc/init.qcom.audio.sh \
     device/lge/g5/scripts/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/lge/g5/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/lge/g5/scripts/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
     device/lge/g5/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/lge/g5/scripts/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
     device/lge/g5/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/lge/g5/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
-    device/lge/g5/scripts/init.qcom.ssr.sh:system/etc/init.qcom.ssr.sh \
-    device/lge/g5/scripts/init.qcom.syspart_fixup.sh:system/etc/init.qcom.syspart_fixup.sh \
-    device/lge/g5/scripts/init.qcom.testscripts.sh:system/etc/init.qcom.testscripts.sh \
-    device/lge/g5/scripts/init.qcom.uicc.sh:system/etc/init.qcom.uicc.sh \
-    device/lge/g5/scripts/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
-    device/lge/g5/scripts/init.qcom.zram.sh:system/etc/init.qcom.zram.sh \
-    device/lge/g5/scripts/init.qti.ims.sh:system/etc/init.qti.ims.sh
+    device/lge/g5/scripts/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8996
+
+# Thermal Engine
+PRODUCT_COPY_FILES += \
+    device/lge/g5/configs/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
+    device/lge/g5/configs/configs/thermal-engine.conf:system/etc/thermal-engine.conf
 
 # Whitelistedapps
 PRODUCT_COPY_FILES += \
     device/lge/g5/configs/whitelistedapps.xml:system/etc/whitelistedapps.xml \
 
 # WiFi
-PRODUCT_COPY_FILES += \
-    device/lge/g5/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
-    device/lge/g5/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/lge/g5/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_wlan_nv.bin
-
 PRODUCT_PACKAGES += \
     libqsap_sdk \
     libQWiFiSoftApCfg \
@@ -325,3 +315,104 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1
+
+#TODO: Cleanup
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.offload.pcm.enable=true \
+    bluetooth.fm.restorecon=0 \
+    dalvik.vm.heapmaxfree=16m \
+    dalvik.vm.heapminfree=4m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heaptargetutilization=0.25 \
+    dalvik.vm.isa.arm64.features=default \
+    dalvik.vm.isa.arm64.variant=kryo \
+    dalvik.vm.isa.arm.features=default \
+    dalvik.vm.isa.arm.variant=cortex-a53 \
+    media.input.fd.disable=true \
+    persist.audio.dual_audio=ON \
+    persist.audio.handset_rx_type=DEFAULT \
+    persist.audio.twin_headset=DISABLE \
+    persist.audio.twin_headset_on=0 \
+    persist.audio.voice.clarity=off \
+    persist.debug.sensors.hal=i \
+    persist.dpm.feature=0 \
+    persist.fp.show_percent=false \
+    persist.gps.qc_nlp_in_use=1 \
+    persist.lg.data.fd=-1 \
+    persist.lg.data.fds_prop=0 \
+    persist.lg.data.llkklk.exact=true \
+    persist.lg.data.llkklk=true \
+    persist.loc.nlp_name=com.qualcomm.location \
+    persist.qcril.disable_retry=true \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.sensors.knock_delay=1000 \
+    persist.sensors.mag_filter_size=8 \
+    persist.sensors.onhand.en=0 \
+    persist.sensors.wul_delay=3000 \
+    persist.sensors.wul_multilevel=3 \
+    persist.sensors.wul_thresh0=2 \
+    persist.sensors.wul_thresh1=10 \
+    persist.sensors.wul_thresh2=15 \
+    persist.service.bdroid.sap=true \
+    persist.service.ccaudit.enable=0 \
+    persist.service.events.enable=0 \
+    persist.service.kernel.enable=0 \
+    persist.service.logger.low=0 \
+    persist.service.main.enable=0 \
+    persist.service.memory.enable=0 \
+    persist.service.odm_log.noti=true \
+    persist.service.odm_log.svc=true \
+    persist.service.packet.enable=0 \
+    persist.service.power.enable=0 \
+    persist.service.radio.enable=0 \
+    persist.service.storage.low=0 \
+    persist.service.system.enable=0 \
+    persist.service.xfrm.enable=0 \
+    persist.spkr.cal.duration=0 \
+    persist.sys.cust.lte_config=true \
+    persist.sys.dalvik.vm.lib.2=libart \
+    persist.sys.enable_hardreset=0 \
+    persist.sys.highlux.menu_on=0 \
+    persist.sys.strictmode.disable=true \
+    persist.telephony.oosisdc=false \
+    ro.boot.svelte=1 \
+    ro.camera.fake_camera_id=2 \
+    ro.camera.notify_nfc=1 \
+    ro.config.max_starting_bg=16 \
+    ro.config.media_vol_extend=ON \
+    ro.config.timer_alert=Timer.ogg \
+    ro.config.vc_call_vol_default=4 \
+    ro.config.vc_call_vol_steps=7 \
+    ro.config.vibrate_type=1 \
+    ro.dev.fmode=0 \
+    ro.dev.fmode_exif=0 \
+    ro.frp.pst=/dev/block/bootdevice/by-name/persistent \
+    ro.gps.agps_provider=1 \
+    ro.lge.gons.enable=true \
+    ro.lge.has_left_sidekey=true \
+    ro.lge.lcd_default_brightness=156 \
+    ro.qc.sdk.audio.fluencetype=nxp \
+    ro.qcom.ad.sensortype=1 \
+    ro.qcom.ad=1 \
+    ro.sys.fw.bg_apps_limit=32 \
+    ro.telephony.default_network=9 \
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    service.bt.support.busytone=true \
+    telephony.lteOnCdmaDevice=0 \
+    use.voice.path.for.pcm.voip=false \
+    vr.perfd.controller.start=0 \
+    wifi.lge.common_hotspot=true \
+    wifi.lge.patch=true \
+    wifi.lge.supportp2p5g=full \
+    wlan.chip.vendor=brcm \
+    wlan.chip.version=bcm43455 \
+    wlan.lge.concurrency=MCC \
+    wlan.lge.dcf.enable=true \
+    wlan.lge.fastroaming=true \
+    wlan.lge.gons.scan.completed=false \
+    wlan.lge.gons.scan.scanonly=false \
+    wlan.lge.passpoint_setting=true \
+    wlan.lge.softapwps=true \
+    wlan.lge.supportsimaka=yes \
+    wlan.lge.traffic.trigger=100

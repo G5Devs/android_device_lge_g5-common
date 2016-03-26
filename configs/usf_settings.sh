@@ -67,7 +67,7 @@ if [ ! -e $trigger_file ]; then
    cp -r $clean_copy_dir/* $dir0
 
    # The USF based calculators have system permissions
-   chown -R system $dir0
+   chown -R -h system $dir0
 
    ln -s $dir0/form_factor_"$type".cfg $dir0/form_factor.cfg
    ln -s $t_dir/cfg_"$type" $t_dir/cfg
