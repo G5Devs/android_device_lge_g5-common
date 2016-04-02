@@ -100,8 +100,8 @@ PRODUCT_COPY_FILES += \
     device/lge/g5/audio/audio_effects.conf:system/etc/audio_effects.conf \
     device/lge/g5/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     device/lge/g5/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/lge/g5/audio/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
-    device/lge/g5/audio/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
+    device/lge/g5/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
+    device/lge/g5/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
     device/lge/g5/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
     device/lge/g5/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     device/lge/g5/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
@@ -241,10 +241,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8996
 
-# Qualcomm Configs
-PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
-
 # Scripts
 PRODUCT_COPY_FILES += \
     device/lge/g5/scripts/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
@@ -253,8 +249,7 @@ PRODUCT_COPY_FILES += \
     device/lge/g5/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     device/lge/g5/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
     device/lge/g5/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/lge/g5/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
-    device/lge/g5/scripts/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
+    device/lge/g5/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -262,8 +257,8 @@ PRODUCT_PACKAGES += \
 
 # Thermal Engine
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
-    device/lge/g5/configs/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+    device/lge/g5/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
+    device/lge/g5/configs/thermal-engine.conf:system/etc/thermal-engine.conf
 
 # Whitelistedapps
 PRODUCT_COPY_FILES += \
