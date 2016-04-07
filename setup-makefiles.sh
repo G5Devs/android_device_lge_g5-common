@@ -208,7 +208,7 @@ EOF
 
 LOCAL_PATH := \$(call my-dir)
 
-ifneq (\$(filter g5 h815,\$(TARGET_DEVICE)),)
+ifneq (\$(filter g5 h850 h830,\$(TARGET_DEVICE)),)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := TimeService
