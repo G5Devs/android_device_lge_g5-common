@@ -15,9 +15,7 @@
 #
 
 BOARD_VENDOR := lge
-COMMON_PATH := device/lge/g5
-TARGET_SPECIFIC_HEADER_PATH := device/lge/g5/include
-TARGET_OTA_ASSERT_DEVICE := g5,h850
+TARGET_SPECIFIC_HEADER_PATH := device/lge/g5-common/include
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
@@ -56,24 +54,21 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02200000 --tags_offset 0x02200000
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_CONFIG := msm_defconfig
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/lge/msm8996
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_BOOTIMAGE_PARTITION_SIZE := 54564137
+BOARD_BOOTIMAGE_PARTITION_SIZE := 41943040
 BOARD_CACHEIMAGE_PARTITION_SIZE := 1291845632
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 58082605
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4341104640
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 24897388544
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 41943040
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/g5/ramdisk/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/lge/g5-common/ramdisk/fstab.qcom
 
 # Audio
 AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
@@ -98,7 +93,7 @@ BOARD_SUPPORTS_SOUND_TRIGGER := false
 BOARD_USES_ALSA_AUDIO := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/g5/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/g5-common/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
@@ -109,7 +104,7 @@ COMMON_GLOBAL_CFLAGS += -DLG_CAMERA_HARDWARE
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
-    device/lge/g5/cmhw \
+    device/lge/g5-common/cmhw \
     hardware/cyanogen/cmhw
 
 # Display
@@ -156,6 +151,7 @@ BOARD_NFC_DEVICE := "/dev/pn547"
 
 # Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+#BOARD_CHARGER_ENABLE_SUSPEND := true
 
 COMMON_GLOBAL_CFLAGS += \
     -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
@@ -171,11 +167,11 @@ TARGET_POWERHAL_VARIANT := qcom
 BOARD_USES_QCOM_HARDWARE := true
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/lge/g5/ril/
+BOARD_RIL_CLASS := ../../../device/lge/g5-common/ril/
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/lge/g5/sepolicy
+BOARD_SEPOLICY_DIRS += device/lge/g5-common/sepolicy
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_msm
@@ -184,7 +180,6 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 
-# Wi-Fi
 # Wi-Fi
 BOARD_WLAN_DEVICE := bcmdhd
 BOARD_HOSTAPD_DRIVER := NL80211
@@ -198,4 +193,4 @@ WIFI_DRIVER_FW_PATH_STA := "/system/etc/firmware/fw_bcmdhd.bin"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
--include vendor/lge/g5/BoardConfigVendor.mk
+-include vendor/lge/g5-common/BoardConfigVendor.mk

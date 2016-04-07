@@ -18,7 +18,7 @@
 $(call inherit-product-if-exists, vendor/lge/g5/g5-vendor.mk)
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += device/lge/g5/overlay
+DEVICE_PACKAGE_OVERLAYS += device/lge/g5-common/overlay
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -31,6 +31,9 @@ TARGET_SCREEN_WIDTH := 1440
 $(call inherit-product-if-exists, build/target/product/verity.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
+
+# Add WiFi Firmware
+# $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
 
 # Permissions
 PRODUCT_COPY_FILES := \
@@ -97,26 +100,25 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/audio/audio_effects.conf:system/etc/audio_effects.conf \
-    device/lge/g5/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    device/lge/g5/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/lge/g5/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
-    device/lge/g5/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
-    device/lge/g5/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
-    device/lge/g5/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    device/lge/g5/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-    device/lge/g5/configs/usf_post_boot.sh:system/etc/usf_post_boot.sh \
-    device/lge/g5/configs/usf_settings.sh:system/etc/usf_settings.sh
+    device/lge/g5-common/audio/audio_effects.conf:system/etc/audio_effects.conf \
+    device/lge/g5-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/lge/g5-common/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
+    device/lge/g5-common/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
+    device/lge/g5-common/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
+    device/lge/g5-common/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
+    device/lge/g5-common/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    device/lge/g5-common/configs/usf_post_boot.sh:system/etc/usf_post_boot.sh \
+    device/lge/g5-common/configs/usf_settings.sh:system/etc/usf_settings.sh
 
 # Bluetooth
 PRODUCT_PACKAGES += \
     hwaddrs
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+    device/lge/g5-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/hsic.control.bt.sh:system/etc/hsic.control.bt.sh
+    device/lge/g5-common/configs/hsic.control.bt.sh:system/etc/hsic.control.bt.sh
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -152,7 +154,7 @@ PRODUCT_PACKAGES += \
 
 # IRSC
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/sec_config:system/etc/sec_config
+    device/lge/g5-common/configs/sec_config:system/etc/sec_config
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -191,9 +193,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += qcmediaplayer
 
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/lge/g5/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/lge/g5/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    device/lge/g5-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/lge/g5-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/lge/g5-common/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
@@ -214,10 +216,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
-    device/lge/g5/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    device/lge/g5/configs/libnfc-nxp-hk-h860n.conf:system/etc/libnfc-nxp-hk-h860n.conf \
-    device/lge/g5/configs/libnfc-nxp-lg.conf:system/etc/libnfc-nxp-lg.conf \
-    device/lge/g5/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
+    device/lge/g5-common/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+    device/lge/g5-common/configs/libnfc-nxp-hk-h860n.conf:system/etc/libnfc-nxp-hk-h860n.conf \
+    device/lge/g5-common/configs/libnfc-nxp-lg.conf:system/etc/libnfc-nxp-lg.conf \
+    device/lge/g5-common/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
@@ -243,13 +245,13 @@ PRODUCT_PACKAGES += \
 
 # Scripts
 PRODUCT_COPY_FILES += \
-    device/lge/g5/scripts/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
-    device/lge/g5/scripts/init.crda.sh:system/etc/init.crda.sh \
-    device/lge/g5/scripts/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    device/lge/g5/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/lge/g5/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/lge/g5/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/lge/g5/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
+    device/lge/g5-common/scripts/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
+    device/lge/g5-common/scripts/init.crda.sh:system/etc/init.crda.sh \
+    device/lge/g5-common/scripts/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    device/lge/g5-common/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    device/lge/g5-common/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+    device/lge/g5-common/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/lge/g5-common/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -257,12 +259,12 @@ PRODUCT_PACKAGES += \
 
 # Thermal Engine
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
-    device/lge/g5/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+    device/lge/g5-common/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
+    device/lge/g5-common/configs/thermal-engine.conf:system/etc/thermal-engine.conf
 
 # Whitelistedapps
 PRODUCT_COPY_FILES += \
-    device/lge/g5/configs/whitelistedapps.xml:system/etc/whitelistedapps.xml \
+    device/lge/g5-common/configs/whitelistedapps.xml:system/etc/whitelistedapps.xml \
 
 # WiFi
 PRODUCT_PACKAGES += \

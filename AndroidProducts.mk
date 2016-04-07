@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-	device/lge/g5/device.mk
+	device/lge/g5-common/g5.mk
