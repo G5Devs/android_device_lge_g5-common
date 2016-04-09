@@ -1,0 +1,78 @@
+# Copyright (c) 2015, LG Eletronics. All rights reserved.
+#
+
+import /init.lge.power.rc
+
+# triton service
+service triton /system/bin/triton
+   class main
+   user root
+   group system
+   socket triton-client stream 660 system system
+   disabled
+
+#write params for triton
+on property:sys.boot_completed=1
+   start triton
+#store default values
+   write /sys/devices/system/cpu/triton/debug 16
+   write /sys/devices/system/cpu/triton/enable 1
+   write /sys/devices/system/cpu/triton/enforce 0
+   write /sys/devices/system/cpu/triton/cur_policy 0
+   chown system system /sys/devices/system/cpu/triton/enable
+   chmod 664 /sys/devices/system/cpu/triton/enable
+   chmod 600 /sys/devices/system/cpu/triton/aevents
+   chmod 600 /sys/devices/system/cpu/triton/bevents
+   chown system system /sys/devices/system/cpu/triton/cur_policy
+   chmod 664 /sys/devices/system/cpu/triton/cur_policy
+   chmod 664 /sys/devices/system/cpu/triton/debug
+service gbmd /system/bin/gbmd
+   class main
+   socket gbm-client stream 660 system system
+   user system
+   group system
+
+on boot
+   chown system system /sys/devices/system/cpu/triton/enable
+   chmod 644 /sys/devices/system/cpu/triton/enable
+# For quick_charging status
+   chown root system /sys/module/lge_charging_controller/parameters/quick_charging_state
+   chmod 0664 /sys/module/lge_charging_controller/parameters/quick_charging_state
+
+# Power_BSP, add hard reset property
+on property:persist.lge.hardreset=1
+   write /sys/module/msm_poweroff/parameters/hard_reset 1
+on property:persist.lge.hardreset=0
+   write /sys/module/msm_poweroff/parameters/hard_reset 0
+
+# hard reset mode
+on property:persist.sys.enable_hardreset=1
+   write /sys/module/qpnp_power_on/parameters/hardreset_mode 1
+on property:persist.sys.enable_hardreset=0
+   write /sys/module/qpnp_power_on/parameters/hardreset_mode 0
+
+# battery fake mode
+on property:persist.service.fakebatt=1
+   write /sys/class/power_supply/lgcc/pseudo_batt "1 1 100 40 4100000 80 1"
+on property:persist.service.fakebatt=0
+   write /sys/class/power_supply/lgcc/pseudo_batt "0 1 100 40 4100000 80 1"
+
+#usb current max mode property
+on property:persist.service.usbcurrentmax=1
+   write /sys/class/power_supply/lgcc/usb_current_max_mode 1
+on property:persist.service.usbcurrentmax=0
+   write /sys/class/power_supply/lgcc/usb_current_max_mode 0
+
+# llk mode
+on property:persist.sys.store_demo_enabled=1
+   write /sys/class/power_supply/lgcc/store_demo_enabled 1
+on property:persist.sys.store_demo_enabled=0
+   write /sys/class/power_supply/lgcc/store_demo_enabled 0
+
+# fuel gauge dumper for debug
+service fg-dump /system/bin/sh /system/etc/fg_dump.sh 10 /data/logger/fg.log
+   user root
+   group root system
+   class main
+   disabled
+   oneshot

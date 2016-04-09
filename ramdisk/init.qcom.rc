@@ -25,7 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.qcom.usb.rc
+# TODO: This MUST be blocked not use in LGE device configuration.
+#import init.qcom.usb.rc
 import init.target.rc
 import init.qcom.factory.rc
 
@@ -33,19 +34,18 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
 
-on init
-    # Set permissions for persist partition
-    mkdir /persist 0771 system system
-
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+# TODO: This MUST be disabled not use 'sdcard' in LGE device.
+#on init
+#    # Set permissions for persist partition
+#    mkdir /persist 0771 system system
+#
+#    # Support legacy paths
+#    symlink /sdcard /mnt/sdcard
+#    symlink /sdcard /storage/sdcard0
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-    # set aggressive read ahead during boot up.
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
     # Allow subsystem (modem etc) debugging
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
@@ -94,6 +94,7 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     mkdir /persist/drm 0770 system system
+    mkdir /persist/bluetooth 0770 bluetooth bluetooth
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -189,6 +190,8 @@ on post-fs-data
 
     #Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
+    #[LGE_CHANGE][CAMERA][jinsang.yun@lge.com]
+    mkdir /etc/camera 0770 camera camera
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -202,7 +205,11 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
+    # chown dhcp dhcp /data/misc/dhcp
+    chown dhcp system /data/misc/dhcp
+#[LGE_WIFI][CT][hayun.kim@lge.com] : [SPEC] DHCPV6 Feature
+    mkdir /data/misc/wide-dhcpv6 0770 dhcp dhcp
+    chown dhcp system /data/misc/wide-dhcpv6
 
     #create port-bridge log dir
     mkdir /data/misc/port_bridge 0770 radio radio
@@ -328,10 +335,11 @@ service iop /system/bin/iop
     group root
     disabled
 
-service qcomsysd /system/bin/qcom-system-daemon
-    class main
-    user root
-    group root qcom_diag
+# TODO: This MUST be disabled not use 'qcom system daemon' in LGE platform.
+#service qcomsysd /system/bin/qcom-system-daemon
+#    class main
+#    user root
+#    group root qcom_diag
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -356,8 +364,9 @@ on property:persist.sys.ssr.enable_ramdumps=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-    #Reset the read_ahead_kb to 512
-    write /sys/block/dm-0/queue/read_ahead_kb 512
+
+    # CPE fw_name used by sound trigger HAL
+    chown media audio /sys/kernel/wcd_cpe0/fw_name
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
@@ -370,8 +379,10 @@ on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
     write /proc/sys/kernel/core_pattern "/data/core/%E.%p.%e"
 
+#[LGE_WIFI][CT][hayun.kim@lge.com] : [SPEC] DHCPV6 Feature
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
+    stop dhcp6c
 
 on property:bluetooth.isEnabled=true
     start btwlancoex
@@ -410,18 +421,20 @@ service qcom-c_main-sh /system/bin/sh /init.class_main.sh
 
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
+    start config_bt_addr
     start config_bluetooth
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
 service cnd /system/bin/cnd
-    class main
+    class late_start
     socket cnd stream 660 root inet
 
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system
+#dpmd will be blocked permanantly on M-OS because any operator not use NSRM. - Heeyeon.nah@lge.com, 2015-08-25
+#service dpmd /system/bin/dpmd
+#    class late_start
+#    socket dpmd stream 660 root system
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
@@ -464,6 +477,18 @@ service hci_filter_root /system/bin/wcnss_filter
     user bluetooth
     group bluetooth qcom_diag system
     disabled
+
+
+# TODO: This MUST be added in LGE platform(It's for Qualcomm solution).
+#service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+#    class core
+#    user root
+#    oneshot
+service config_bt_addr /system/bin/btnvtool -O
+    class core
+    user bluetooth
+    group bluetooth radio
+    oneshot
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -529,7 +554,6 @@ service port-bridge /system/bin/port-bridge
     user radio system
     group radio system inet
     disabled
-    oneshot
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -540,7 +564,7 @@ service qmiproxy /system/bin/qmiproxy
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
     class main
-    user root
+    user radio
     group radio audio bluetooth gps nfc qcom_diag
     disabled
 
@@ -611,11 +635,10 @@ service amp_unload /system/bin/amploader -u
     oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
-    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
-    -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
+    -m/data/misc/wifi/p2p_supplicant.conf \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1p2p_device=1 \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -641,7 +664,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 # FST Manager can be started by property_set("ctl.start", "fstman:<hostap ctrl iface>");
-service fstman /system/bin/fstman -B -ddd -c /data/misc/wifi/fstman.ini
+service fstman /system/bin/fstman -B -ddd -n -c /data/misc/wifi/fstman.ini
     user wifi
     group wifi net_admin net_raw
     class main
@@ -654,7 +677,8 @@ on property:netd.fstman.start=true
 on property:netd.fstman.start=false
     stop fstman
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKLG
+# Wi-Fi P1 8992 BringUp sanghyuk.nam@lge.com
+service dhcpcd_wlan0 /system/bin/dhcpcd -ABDKL
     class late_start
     disabled
     oneshot
@@ -665,6 +689,12 @@ service dhcpcd_bond0 /system/bin/dhcpcd -ABKLG
     oneshot
 
 service dhcpcd_p2p /system/bin/dhcpcd -ABKLG
+    class late_start
+    disabled
+    oneshot
+
+#LGE_CHANGE, moon-wifi@lge.com by wo0ngs for ORG DHCP Release
+service iprelease_wlan0 /system/bin/dhcpcd -k
     class late_start
     disabled
     oneshot
@@ -684,36 +714,31 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service ptt_socket_app /system/bin/ptt_socket_app -d
-    class main
-    user root
-    group root
-    oneshot
+# TODO: This MUST be disabled not use 'ptt socket app' in LGE platform.
+#service ptt_socket_app /system/bin/ptt_socket_app -d
+#   class main
+#   user root
+#   group root
+#   oneshot
 
-service ptt_ffbm /system/bin/ptt_socket_app -f -d
-    user root
-    group root
-    disabled
-    oneshot
+# TODO: This MUST be disabled not use 'ptt ffbm' in LGE platform.
+#service ptt_ffbm /system/bin/ptt_socket_app -f -d
+#    user root
+#    group root
+#    disabled
+#    oneshot
 
-service wifi_fccutild /system/bin/wifi_fccutild
-    user system
-    group system inet net_admin
-    socket wififccutild_server dgram 0660 system system
-    disabled
-    oneshot
 
-on property:wifi.fccutild.load.qcacld=true
-    insmod /system/lib/modules/qca_cld/qca_cld_wlan.ko con_mode=5
+# TODO: This MUST be removed in LGE platform
+#service cnss_diag /system/bin/cnss_diag -q -f
+#    class main
+#    user root
+#    group root
+#    oneshot
 
-service cnss_diag /system/bin/cnss_diag -q -f
-    class main
-    user root
-    group root
-    oneshot
-
-service cnss-daemon /system/bin/cnss-daemon -n -l
-    class late_start
+# TODO: This MUST be removed in LGE platform
+#service cnss-daemon /system/bin/cnss-daemon -n -l
+#    class late_start
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
@@ -750,12 +775,13 @@ service loc_launcher /system/bin/loc_launcher
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
 
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user system
-    group system
-    disabled
-    oneshot
+# TODO: Please DO NOT enable the next line when you merge the CAF
+#service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+#    class late_start
+#    user root
+#    group system
+#    disabled
+#    oneshot
 
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
@@ -789,12 +815,13 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     disabled
     oneshot
 
-service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-    seclabel u:r:qti-testscripts:s0
+# remove init.qcom.testscripts.sh
+#service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
+#    class late_start
+#    user root
+#    disabled
+#    oneshot
+#    seclabel u:r:qti-testscripts:s0
 
 service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
     class late_start
@@ -808,16 +835,18 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
-   class late_start
-   user root
-   disabled
-   oneshot
+# remove init.qcom.zram.sh
+#service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
+#   class late_start
+#   user root
+#   disabled
+#   oneshot
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-    start qti-testscripts
-    start config-zram
+# remove init.qcom.testscripts.sh & init.qcom.zram.sh
+#    start qti-testscripts
+#    start config-zram
 
 service atfwd /system/bin/ATFWD-daemon
     class late_start
@@ -863,7 +892,7 @@ service ril-daemon2 /system/bin/rild -c 2
     socket rild-debug2 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
+    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log net_raw
 
 service ril-daemon3 /system/bin/rild -c 3
     class main
@@ -871,7 +900,7 @@ service ril-daemon3 /system/bin/rild -c 3
     socket rild-debug3 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
+    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log net_raw
 
 service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
     class late_start
@@ -988,6 +1017,41 @@ service RIDL /system/vendor/bin/RIDLClient.exe
     # removed for security team - misc bluetooth radio gps wifi diag media_rw
     # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_raw net_admin
 
+#LGE_CHANGE_S, Advanced MOCA, seungyeol.seo@lge.com
+service moca_service /system/bin/advanced_moca -s
+    class late_start
+    user root
+    group system sdcard_r sdcard_rw radio
+    disabled
+    oneshot
+    socket Full.MOCA.port stream 660 system system
+
+on property:persist.service.moca.enable=1
+   start moca_service
+
+
+service voqas_service /system/bin/voqas -s
+    class late_start
+    user root
+    group system sdcard_r sdcard_rw radio audio
+    disabled
+    oneshot
+    socket Full.VOQAS.port stream 660 system system
+
+on property:sys.voqas.service.enable=1
+   start voqas_service
+
+service moca_service_disable /system/bin/advanced_moca -k
+    class late_start
+    user root
+    group system sdcard_r sdcard_rw radio
+    disabled
+    oneshot
+
+on property:persist.service.moca.enable=0
+   start moca_service_disable
+#LGE_CHANGE_E, Advanced MOCA, seungyeol.seo@lge.com
+
 # Coresight early boot service
 service cs-early-boot /system/bin/sh /persist/coresight/qdss.agent.sh early-boot /system/etc/init.qcom.debug.sh
     class core
@@ -1014,12 +1078,12 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     user system
     group system
 
+# remove QSSP, alice does not support Qualcomm Snapdragon Smart Protect
 # Seemp health service
-service seemp_healthd /system/vendor/bin/seemp_healthd
-    class late_start
-    user system
-    group system
+#service seemp_healthd /system/vendor/bin/seemp_healthd
+#    class late_start
+#    user system
+#    group system
 
 on charger
     setprop persist.sys.usb.config charging
-

@@ -1,0 +1,46 @@
+on post-fs-data
+    trigger fota-boot-trigger
+
+on fota-update
+    trigger early-init
+    trigger fota-update-trigger
+
+on fota-boot-trigger
+    mkdir /data/fota 0770 system system
+    mkdir /cache/fota 0770 system system
+    chown system system /cache/fota
+    chmod 0775 /cache/fota
+    chown system system /cache/fota/usd.dat
+    chmod 0775 /cache/fota/usd.dat
+
+on fota-update-trigger
+    export PATH /sbin
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
+
+    symlink /system/etc /etc
+
+    mkdir /sdcard
+    mkdir /cache
+    mount /tmp /tmp tmpfs
+
+    #mount rootfs rootfs / rw remount
+
+# mount mmc partitions
+	#wait /dev/block/bootdevice/by-name/system
+	#wait /dev/block/platform/soc.0/f9824900.sdhci/by-name/system
+
+	#wait /dev/block/bootdevice/by-name/cache
+	#wait /dev/block/bootdevice/by-name/cache
+	#wait /dev/block/bootdevice/by-name/cache
+	#wait /dev/block/bootdevice/by-name/cache
+	#wait /dev/block/bootdevice/by-name/cache
+	wait /dev/block/platform/soc/624000.ufshc/by-name/cache
+
+	mount_all /fstab.fota
+
+	wait /dev/graphics/fb0
+	wait /dev/tty0
+
+	mkdir /cache/fota

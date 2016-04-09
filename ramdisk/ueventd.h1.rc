@@ -26,7 +26,7 @@
 #
 
 # the DIAG device node is not world writable/readable.
-/dev/diag                 0660   system     qcom_diag
+/dev/diag_lge             0660   system     qcom_diag
 
 /dev/genlock              0666   system     system
 /dev/kgsl                 0666   system     system
@@ -42,16 +42,24 @@
 /dev/smd6                 0660   system     system
 /dev/smd7                 0660   bluetooth  bluetooth
 /dev/ccid_bridge          0660   system     system
-/dev/ipa                  0660   system     net_admin
-/dev/wwan_ioctl           0660   system     net_admin
+/dev/ipa                  0660   net_admin  net_admin
+/dev/wwan_ioctl           0660   net_admin  net_admin
 /dev/ipaNatTable          0660   net_admin  net_admin
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
 
+#BT_S : [CONBT-2025] LGC_BT_COMMON_IMP_MOS_V4L2
+/dev/brcm_bt_drv          0666   bluetooth  bluetooth
+/dev/radio0               0660   system     system
+#BT_E : [CONBT-2025] LGC_BT_COMMON_IMP_MOS_V4L2
+
+#permissions for R1
+/dev/hidraw*              0644   root       root
+
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
 
-/dev/radio0               0640   system     system
+#/dev/radio0               0640   system     system
 /dev/rfcomm0              0660   bluetooth  bluetooth
 /dev/ttyUSB0              0660   bluetooth  bluetooth
 /dev/smdcntl0             0640   radio      radio
@@ -170,16 +178,15 @@
 /dev/avtimer              0660   system     audio
 
 # DVB devices
-/dev/dvb/adapter0/demux*  0440   media       media
+# LGE_BROADCAST_ISDBT_JAPAN
+#/dev/dvb/adapter0/demux*  0440   media       media
+/dev/dvb/adapter0/demux*  0660   media       media
 /dev/dvb/adapter0/dvr*    0660   media       media
 /dev/dvb/adapter0/video*  0660   media       media
 
 # Broadcast devices
 /dev/tsc_mux0             0660   media       media
 /dev/tsc_ci0              0660   media       media
-
-# ultrasonic fingerprint
-/sys/devices/soc/757a000.i2c/i2c-6/*                eeprom         0440    system   system
 
 # sensors
 /sys/devices/i2c-12/12-*  pollrate_ms 0664 system system
@@ -211,13 +218,12 @@
 # wlan
 /dev/wcnss_wlan           0660   system     system
 /dev/wcnss_ctrl           0660   system     system
-/sys/devices/soc/600000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net/wlan0/queues/rx-* rps_cpus 0660 system system
-/sys/devices/soc/600000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net/p2p0/queues/rx-* rps_cpus 0660 system system
-
 #nfc permissions
-/dev/nfc-nci              0660    nfc         nfc
-/dev/nq-nci               0660    nfc         nfc
-/dev/assd                 0660    nfc         nfc
+#/dev/nfc-nci              0660    nfc         nfc
+#/dev/nq-nci               0660    nfc         nfc
+#/dev/assd                 0660    nfc         nfc
+#/dev/bcm2079x             0660    nfc         nfc
+/dev/pn547                0660    nfc         nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -234,8 +240,18 @@
 /dev/ramdump*             0640   system     system
 
 # Fingerprint device
-/dev/qbt1000              0660   system     system
+#/dev/qbt1000              0660   system     system
 
-#ImproveTouch device
-/dev/hbtp_input           0660   system     system
-/dev/hbtp_vm              0660   system     system
+# LGE_BROADCAST_TDMB
+/dev/broadcast0           0660   media     media
+/dev/block/bootdevice/by-name/persistent        0600    system  system
+
+# LGE_BROADCAST_ISDBT_JAPAN
+/dev/broadcast_*          0660   system      system
+
+# Mobicore
+/dev/mobicore             0600   system     system
+# LGE_CHANGE_S, [NFC][sungwook.ahn@lge.com], 2015-04-03, NFC Bring up
+/dev/cxd224x-i2c         0660   nfc        nfc
+# LGE_CHANGE_E, [NFC][sungwook.ahn@lge.com], 2015-04-03, NFC Bring up
+/dev/mobicore-user        0666   system     system
