@@ -33,7 +33,7 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-dal
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
 
 # Add WiFi Firmware
-# $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
+$(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 # Permissions
 PRODUCT_COPY_FILES := \
@@ -84,6 +84,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8996 \
     audio.r_submix.default \
     audio.usb.default \
+    audio_amplifier.msm8996 \
     audio_policy.msm8996 \
     tinymix
 
@@ -147,6 +148,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.msm8996
 
+# IPACM
+PRODUCT_PACKAGES += \
+    IPACM_cfg.xml \
+    ipacm
+
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
@@ -159,6 +165,10 @@ PRODUCT_COPY_FILES += \
 # Keymaster
 PRODUCT_PACKAGES += \
     keystore.msm8996
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8996
 
 # Media
 PRODUCT_PACKAGES += \
@@ -242,6 +252,10 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8996
+
+# RIL
+PRODUCT_PACKAGES += \
+    librmnetctl
 
 # Scripts
 PRODUCT_COPY_FILES += \
