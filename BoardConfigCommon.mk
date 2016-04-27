@@ -68,7 +68,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/g5-common/ramdisk/fstab.h1
+TARGET_RECOVERY_FSTAB := device/lge/g5-common/rootdir/root/fstab.h1
 
 # Audio
 AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
