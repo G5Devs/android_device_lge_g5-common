@@ -303,16 +303,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librmnetctl
 
-# Scripts
-PRODUCT_COPY_FILES += \
-    device/lge/g5-common/scripts/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
-    device/lge/g5-common/scripts/init.crda.sh:system/etc/init.crda.sh \
-    device/lge/g5-common/scripts/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    device/lge/g5-common/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/lge/g5-common/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/lge/g5-common/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/lge/g5-common/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8996
