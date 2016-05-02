@@ -237,49 +237,16 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.fota \
-    fstab.h1 \
-    init.ath3k.bt.sh \
-    init.class_main.sh \
-    init.crda.sh \
-    init.h1.power.rc \
-    init.h1.rc \
-    init.h1_core.rc \
-    init.h1_product.rc \
-    init.lge.atd.rc \
-    init.lge.audio.rc \
-    init.lge.early.rc \
-    init.lge.fingerprints.rc \
-    init.lge.fs.rc \
-    init.lge.log.rc \
-    init.lge.modem_log.rc \
-    init.lge.power.rc \
-    init.lge.rc \
-    init.lge.sensors.rc \
-    init.lge.svelte.rc \
-    init.lge.usb.default.sh \
-    init.lge.usb.rc \
-    init.lge.usb.sh \
-    init.lge.usb.vzw.sh \
-    init.lge.vrhid.rc \
-    init.msm8996.crash.sh \
-    init.msm8996_core.rc \
-    init.qcom.bt.sh \
-    init.qcom.class_core.sh \
-    init.qcom.coex.sh \
-    init.qcom.factory.rc \
-    init.qcom.fm.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.rc \
-    init.qcom.sdio.sh \
-    init.qcom.sensors.sh \
-    init.qcom.sh \
+    fstab.qcom \
     init.target.rc \
-    init.time_in_state.sh \
-    lge.fota.rc \
-    lge.fota.update.rc \
-    set_emmc_size.sh \
-    ueventd.h1.rc
+    init.qcom.rc \
+    init.qcom.factory.rc \
+    init.qcom.sh \
+    init.qcom.class_core.sh \
+    init.class_main.sh \
+    init.qcom.usb.rc \
+    init.qcom.sensors.sh \
+    ueventd.qcom.rc
 
 # RIL
 PRODUCT_PACKAGES += \
