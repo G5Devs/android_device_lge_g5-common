@@ -21,18 +21,19 @@ $(call inherit-product-if-exists, vendor/lge/g5/g5-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += device/lge/g5-common/overlay
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
 $(call inherit-product-if-exists, build/target/product/verity.mk)
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 
-# Add WiFi Firmware
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+
+# Add WiFi Config files
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 # Permissions

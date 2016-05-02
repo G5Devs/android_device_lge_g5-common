@@ -71,7 +71,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/g5-common/rootdir/root/fstab.h1
+TARGET_RECOVERY_FSTAB := device/lge/g5-common/rootdir/etc/fstab.qcom
 
 # Audio
 AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
@@ -103,7 +103,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-COMMON_GLOBAL_CFLAGS += -DLG_CAMERA_HARDWARE
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
@@ -120,9 +119,9 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API := true
+#TARGET_USES_NEW_ION_API := true
 TARGET_USES_OVERLAY := true
-TARGET_USES_QCOM_BSP := true
+#TARGET_USES_QCOM_BSP := true
 USE_OPENGL_RENDERER := true
 
 # Encryption
@@ -137,7 +136,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
 # Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Keystore
 TARGET_PROVIDES_KEYMASTER := true
@@ -173,7 +172,6 @@ BOARD_RIL_CLASS := ../../../device/lge/g5-common/ril/
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/lge/g5-common/sepolicy
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_msm
