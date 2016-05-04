@@ -4,7 +4,7 @@
 -vendor/lib64/libTimeService.so
 -vendor/lib/libtime_genoff.so
 -vendor/lib/libTimeService.so
-bin/BCM4345C0_003.001.025.0101.LGE_Alice_NA_ORC.hcd
+bin/BCM4345C0_003.001.025.0104.0142_Alice_ORC.hcd
 bin/check_data_mount.sh
 bin/diag_callback_sample
 bin/energy-awareness
@@ -187,7 +187,7 @@ vendor/etc/scve/textreco/chardecoder/_numpunc_parteng_font40_4transmeshr_morph.t
 vendor/etc/seemp/BDTModels/confidence.cfg
 vendor/etc/seemp/config/app_whitelist.cfg
 vendor/etc/seemp/seemp_features.cfg
-vendor/firmware/BCM4345C0_003.001.025.0101.LGE_Alice_NA_ORC.hcd
+vendor/firmware/BCM4345C0_003.001.025.0104.0142_Alice_ORC.hcd
 vendor/firmware/libpn548ad_fw.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
