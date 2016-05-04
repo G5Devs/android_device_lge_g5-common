@@ -110,12 +110,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     hwaddrs
 
-PRODUCT_COPY_FILES += \
-    device/lge/g5-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
-
-PRODUCT_COPY_FILES += \
-    device/lge/g5-common/configs/hsic.control.bt.sh:system/etc/hsic.control.bt.sh
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -128,6 +122,9 @@ PRODUCT_PACKAGES += \
     memtrack.msm8996 \
     hdmi_cec.msm8996 \
     liboverlay
+
+PRODUCT_COPY_FILES += \
+    device/lge/g5-common/configs/calib.cfg:system/media/calib.cfg \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

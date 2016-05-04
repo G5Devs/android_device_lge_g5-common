@@ -98,6 +98,8 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/g5-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/g5-common/bluetooth/libbt_vndcfg.txt
+
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 

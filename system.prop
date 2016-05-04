@@ -1,107 +1,4 @@
 #
-# system.prop for g5
-#
-
-audio.offload.pcm.enable=true
-bluetooth.fm.restorecon=0
-dalvik.vm.heapmaxfree=16m
-dalvik.vm.heapminfree=4m
-dalvik.vm.heapsize=512m
-dalvik.vm.heapstartsize=8m
-dalvik.vm.heaptargetutilization=0.25
-dalvik.vm.isa.arm64.features=default
-dalvik.vm.isa.arm64.variant=kryo
-dalvik.vm.isa.arm.features=default
-dalvik.vm.isa.arm.variant=cortex-a53
-media.input.fd.disable=true
-persist.audio.dual_audio=ON
-persist.audio.handset_rx_type=DEFAULT
-persist.audio.twin_headset=DISABLE
-persist.audio.twin_headset_on=0
-persist.audio.voice.clarity=off
-persist.debug.sensors.hal=i
-persist.dpm.feature=0
-persist.fp.show_percent=false
-persist.gps.qc_nlp_in_use=1
-persist.lg.data.fd=-1
-persist.lg.data.fds_prop=0
-persist.lg.data.llkklk.exact=true
-persist.lg.data.llkklk=true
-persist.loc.nlp_name=com.qualcomm.location
-persist.qcril.disable_retry=true
-persist.radio.apm_sim_not_pwdn=1
-persist.sensors.knock_delay=1000
-persist.sensors.mag_filter_size=8
-persist.sensors.onhand.en=0
-persist.sensors.wul_delay=3000
-persist.sensors.wul_multilevel=3
-persist.sensors.wul_thresh0=2
-persist.sensors.wul_thresh1=10
-persist.sensors.wul_thresh2=15
-persist.service.bdroid.sap=true
-persist.service.ccaudit.enable=0
-persist.service.events.enable=0
-persist.service.kernel.enable=0
-persist.service.logger.low=0
-persist.service.main.enable=0
-persist.service.memory.enable=0
-persist.service.odm_log.noti=true
-persist.service.odm_log.svc=true
-persist.service.packet.enable=0
-persist.service.power.enable=0
-persist.service.radio.enable=0
-persist.service.storage.low=0
-persist.service.system.enable=0
-persist.service.xfrm.enable=0
-persist.spkr.cal.duration=0
-persist.sys.cust.lte_config=true
-persist.sys.dalvik.vm.lib.2=libart
-persist.sys.enable_hardreset=0
-persist.sys.highlux.menu_on=0
-persist.sys.strictmode.disable=true
-persist.telephony.oosisdc=false
-ro.boot.svelte=1
-ro.camera.fake_camera_id=2
-ro.camera.notify_nfc=1
-ro.config.max_starting_bg=16
-ro.config.media_vol_extend=ON
-ro.config.timer_alert=Timer.ogg
-ro.config.vc_call_vol_default=4
-ro.config.vc_call_vol_steps=7
-ro.config.vibrate_type=1
-ro.dev.fmode=0
-ro.dev.fmode_exif=0
-ro.frp.pst=/dev/block/bootdevice/by-name/persistent
-ro.gps.agps_provider=1
-ro.lge.gons.enable=true
-ro.lge.has_left_sidekey=true
-ro.lge.lcd_default_brightness=156
-ro.qc.sdk.audio.fluencetype=nxp
-ro.qcom.ad.sensortype=1
-ro.qcom.ad=1
-ro.sys.fw.bg_apps_limit=32
-ro.telephony.default_network=9
-ro.vendor.extension_library=libqti-perfd-client.so
-service.bt.support.busytone=true
-telephony.lteOnCdmaDevice=0
-use.voice.path.for.pcm.voip=false
-vr.perfd.controller.start=0
-wifi.lge.common_hotspot=true
-wifi.lge.patch=true
-wifi.lge.supportp2p5g=full
-wlan.chip.vendor=brcm
-wlan.chip.version=bcm43455
-wlan.lge.concurrency=MCC
-wlan.lge.dcf.enable=true
-wlan.lge.fastroaming=true
-wlan.lge.gons.scan.completed=false
-wlan.lge.gons.scan.scanonly=false
-wlan.lge.passpoint_setting=true
-wlan.lge.softapwps=true
-wlan.lge.supportsimaka=yes
-wlan.lge.traffic.trigger=100
-
-#
 # system.prop for msm8996
 #
 
@@ -117,7 +14,11 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
+# Start in cdma mode
+# TODO: Please DO NOT enable the next line when you merge CAF
+#ro.telephony.default_network=10
 
 debug.sf.hw=1
 debug.egl.hw=1
@@ -126,7 +27,6 @@ dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
-ro.sf.lcd_density=640
 #ro.hdmi.enable=true
 persist.speaker.prot.enable=true
 qcom.hw.aac.encoder=true
@@ -189,6 +89,12 @@ bt.max.hfpclient.connections=1
 #ro.qualcomm.cabl=2
 ro.qualcomm.cabl=0
 
+#
+# System props for telephony
+# System prop to turn on CdmaLTEPhone always
+# TODO: Please DO NOT enable the next line when you merge CAF
+#telephony.lteOnCdmaDevice=1
+
 #Simulate sdcard on /data/media
 #
 persist.fuse_sdcard=true
@@ -244,10 +150,10 @@ tunnel.audio.encode=false
 audio.offload.buffer.size.kb=32
 
 #Enable offload audio video playback by default
-audio.offload.video=false
+#audio.offload.video=true
 
 #Enable 16 bit PCM offload by default
-audio.offload.pcm.16bit.enable=true
+#audio.offload.pcm.16bit.enable=true
 
 #Enable 24 bit PCM offload by default
 audio.offload.pcm.24bit.enable=true
@@ -259,7 +165,8 @@ audio.offload.track.enable=true
 audio.deep_buffer.media=true
 
 #enable voice path for PCM VoIP by default
-use.voice.path.for.pcm.voip=true
+#use.voice.path.for.pcm.voip move to model/audio_config.mk
+#use.voice.path.for.pcm.voip=true
 
 #Enable multi channel aac through offload
 audio.offload.multiaac.enable=true
@@ -268,7 +175,8 @@ audio.offload.multiaac.enable=true
 ro.nfc.port=I2C
 
 #enable dsp gapless mode by default
-audio.offload.gapless.enabled=true
+#move to model property setting
+#audio.offload.gapless.enabled=true
 
 #enable pbe effects
 audio.safx.pbe.enabled=true
@@ -304,7 +212,10 @@ audio.dolby.ds2.enabled=false
 audio.dolby.ds2.hardbypass=false
 
 audio.offload.passthrough=false
-audio.offload.multiple.enabled=true
+
+#move to model property setting
+#Enable multi offload by defaul
+#audio.offload.multiple.enabled=false
 
 # enable navigation bar
 qemu.hw.mainkeys=0
@@ -323,7 +234,98 @@ persist.sys.pd_enable=0
 sdm.debug.disable_rotator_split=1
 
 #Increase cached app limit
-ro.sys.fw.bg_apps_limit=60
+#ro.sys.fw.bg_apps_limit=60
+
+# property for oom values
+ro.sys.fw.bg_cached_ratio=0.33
+ro.sys.fw.mOomAdj1=0
+ro.sys.fw.mOomAdj2=1
+ro.sys.fw.mOomAdj3=2
+ro.sys.fw.mOomAdj4=3
+ro.sys.fw.mOomAdj5=9
+ro.sys.fw.mOomAdj6=15
+ro.sys.fw.mOomMinFree1=73728
+ro.sys.fw.mOomMinFree2=92160
+ro.sys.fw.mOomMinFree3=110592
+ro.sys.fw.mOomMinFree4=129024
+ro.sys.fw.mOomMinFree5=225000
+ro.sys.fw.mOomMinFree6=325000
 
 #Camera fullscreen doesn't show navigation bar
 Camera.no_navigation_bar=true
+
+#set cutoff voltage to 3400mV
+ro.cutoff_voltage_mv=3400
+
+# LGE Properties
+
+# Audio
+audio.offload.24bit.enable=1
+audio.offload.gapless.enabled=true
+audio.offload.multiple.enabled=true
+audio.offload.pcm.16bit.enable=false
+audio.offload.pcm.enable=true
+audio.offload.video=false
+persist.audio.dual_audio=ON
+persist.audio.handset_rx_type=DEFAULT
+persist.audio.twin_headset=DISABLE
+persist.audio.twin_headset_on=0
+persist.audio.voice.clarity=off
+ro.qc.sdk.audio.fluencetype=nxp
+
+# NFC
+lge.nfc.vendor=nxp
+
+# GPS
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+
+# Sensors
+persist.sensors.mag_filter_size=8
+persist.sensors.onhand.en=0
+persist.sensors.wul_delay=3000
+persist.sensors.wul_multilevel=3
+persist.sensors.wul_thresh0=2
+persist.sensors.wul_thresh1=10
+persist.sensors.wul_thresh2=15
+persist.spkr.cal.duration=0
+persist.sys.enable_hardreset=0
+persist.sys.highlux.menu_on=0
+persist.sys.ssr.restart_level=ALL_ENABLE
+
+# Camera
+ro.camera.fake_camera_id=2
+ro.camera.notify_nfc=1
+
+# FRP
+ro.frp.pst=/dev/block/bootdevice/by-name/persistent
+
+# LCD
+ro.lge.lcd_default_brightness=156
+ro.sf.lcd_density=640
+
+# QCOM
+ro.qcom.ad.calib.data=/system/media/display/calib.cfg
+ro.qcom.ad.sensortype=1
+ro.qcom.ad=1
+
+# RIL
+ro.telephony.default_network=9
+telephony.lteOnCdmaDevice=0
+
+# Wi-Fi
+wifi.lge.common_hotspot=true
+wifi.lge.patch=true
+wifi.lge.supportp2p5g=full
+wlan.chip.vendor=brcm
+wlan.chip.version=bcm43455
+wlan.lge.concurrency=MCC
+wlan.lge.dcf.enable=true
+wlan.lge.fastroaming=true
+wlan.lge.gons.scan.completed=false
+wlan.lge.gons.scan.scanonly=false
+wlan.lge.passpoint_setting=true
+wlan.lge.softapwps=true
+wlan.lge.supportsimaka=yes
+wlan.lge.traffic.trigger=100

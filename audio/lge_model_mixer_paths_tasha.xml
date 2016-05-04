@@ -287,6 +287,7 @@
 
     <path name="headphones-advanced">
         <path name="headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="74" />
         <ctl name="RX2 Mix Digital Volume" value="74" />
         <ctl name="HPHL Volume" value="20" />
@@ -295,6 +296,7 @@
 
     <path name="headphones-aux">
         <path name="headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="74" />
         <ctl name="RX2 Mix Digital Volume" value="74" />
         <ctl name="HPHL Volume" value="20" />
@@ -303,6 +305,7 @@
 
     <path name="voice-headphones-advanced">
         <path name="voice-headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="84" />
         <ctl name="RX2 Mix Digital Volume" value="84" />
         <ctl name="HPHL Volume" value="20" />
@@ -311,6 +314,7 @@
 
     <path name="voice-headphones-aux">
         <path name="voice-headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="84" />
         <ctl name="RX2 Mix Digital Volume" value="84" />
         <ctl name="HPHL Volume" value="20" />
@@ -319,6 +323,7 @@
 
     <path name="headphones-advanced-44.1">
         <path name="headphones-44.1" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Digital Volume" value="74" />
         <ctl name="RX2 Digital Volume" value="74" />
         <ctl name="HPHL Volume" value="20" />
@@ -327,6 +332,7 @@
 
     <path name="headphones-aux-44.1">
         <path name="headphones-44.1" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Digital Volume" value="74" />
         <ctl name="RX2 Digital Volume" value="74" />
         <ctl name="HPHL Volume" value="20" />
@@ -366,12 +372,12 @@
 
     <path name="bt-sco-and-speaker">
         <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
-        <path name="speaker-mono" />
+        <path name="speaker-protected" />
     </path>
 
     <path name="bt-sco-wb-and-speaker">
         <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
-        <path name="speaker-mono" />
+        <path name="speaker-protected" />
     </path>
 
     <path name="bt-sco-and-headphones">
@@ -437,6 +443,7 @@
 
     <path name="voip-headphones-advanced">
         <path name="voice-headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="84" />
         <ctl name="RX2 Mix Digital Volume" value="84" />
         <ctl name="HPHL Volume" value="20" />
@@ -445,6 +452,7 @@
 
     <path name="voip-headphones-aux">
         <path name="voice-headphones" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
         <ctl name="RX1 Mix Digital Volume" value="84" />
         <ctl name="RX2 Mix Digital Volume" value="84" />
         <ctl name="HPHL Volume" value="20" />
@@ -499,10 +507,10 @@
         <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
-        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="DMIC MUX7" value="DMIC2" />
         <ctl name="SLIM TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
-        <ctl name="DMIC MUX8" value="DMIC2" />
+        <ctl name="DMIC MUX8" value="DMIC0" />
         <ctl name="DEC7 Volume" value="84" />
         <ctl name="DEC8 Volume" value="84" />
     </path>

@@ -7,8 +7,8 @@
     <mpath name="voice-headphones">
         <ctl name="COMP1 Switch" value="1" />
         <ctl name="COMP2 Switch" value="1" />
-        <ctl name="RX1 Mix Digital Volume" value="80" />
-        <ctl name="RX2 Mix Digital Volume" value="80" />
+        <ctl name="RX1 Mix Digital Volume" value="82" />
+        <ctl name="RX2 Mix Digital Volume" value="82" />
         <ctl name="HPHL Volume" value="17" />
         <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -16,8 +16,8 @@
     <mpath name="voice-headphones-advanced">
           <ctl name="COMP1 Switch" value="1" />
           <ctl name="COMP2 Switch" value="1" />
-    	  <ctl name="RX1 Mix Digital Volume" value="80" />
-    	  <ctl name="RX2 Mix Digital Volume" value="80" />
+    	  <ctl name="RX1 Mix Digital Volume" value="82" />
+    	  <ctl name="RX2 Mix Digital Volume" value="82" />
     	  <ctl name="HPHL Volume" value="17" />
     	  <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -25,8 +25,8 @@
     <mpath name="voice-headphones-aux">
           <ctl name="COMP1 Switch" value="1" />
           <ctl name="COMP2 Switch" value="1" />
-    	  <ctl name="RX1 Mix Digital Volume" value="80" />
-    	  <ctl name="RX2 Mix Digital Volume" value="80" />
+    	  <ctl name="RX1 Mix Digital Volume" value="82" />
+    	  <ctl name="RX2 Mix Digital Volume" value="82" />
     	  <ctl name="HPHL Volume" value="17" />
     	  <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -34,8 +34,8 @@
     <mpath name="voip-headphones">
         <ctl name="COMP1 Switch" value="0" />
         <ctl name="COMP2 Switch" value="0" />
-        <ctl name="RX1 Mix Digital Volume" value="84" />
-        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="RX1 Mix Digital Volume" value="85" />
+        <ctl name="RX2 Mix Digital Volume" value="85" />
         <ctl name="HPHL Volume" value="17" />
         <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -43,8 +43,8 @@
     <mpath name="voip-headphones-advanced">
         <ctl name="COMP1 Switch" value="0" />
         <ctl name="COMP2 Switch" value="0" />
-        <ctl name="RX1 Mix Digital Volume" value="84" />
-        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="RX1 Mix Digital Volume" value="85" />
+        <ctl name="RX2 Mix Digital Volume" value="85" />
         <ctl name="HPHL Volume" value="17" />
         <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -52,8 +52,8 @@
     <mpath name="voip-headphones-aux">
         <ctl name="COMP1 Switch" value="0" />
         <ctl name="COMP2 Switch" value="0" />
-        <ctl name="RX1 Mix Digital Volume" value="84" />
-        <ctl name="RX2 Mix Digital Volume" value="84" />
+        <ctl name="RX1 Mix Digital Volume" value="85" />
+        <ctl name="RX2 Mix Digital Volume" value="85" />
         <ctl name="HPHL Volume" value="17" />
         <ctl name="HPHR Volume" value="17" />
     </mpath>
@@ -66,6 +66,95 @@
         <ctl name="DEC7 Volume" value="98" />
     </mpath>
 
+    <mpath name="headphones">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphones-44.1">
+        <ctl name="RX1 Digital Volume" value="74" />
+        <ctl name="RX2 Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="speaker-and-headphones">
+        <ctl name="RX1 Mix Digital Volume" value="72" />
+        <ctl name="RX2 Mix Digital Volume" value="72" />
+        <ctl name="RX7 Digital Volume" value="87" />
+    </mpath>
+
+    <mpath name="anc-headphones">
+        <ctl name="RX1 Digital Volume" value="82" />
+        <ctl name="RX2 Digital Volume" value="82" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="voice-anc-headphones">
+        <ctl name="RX1 Digital Volume" value="82" />
+        <ctl name="RX2 Digital Volume" value="82" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="voice-anc-fb-headphones">
+        <ctl name="RX1 Digital Volume" value="82" />
+        <ctl name="RX2 Digital Volume" value="82" />
+        <ctl name="HPHL Volume" value="14" />
+        <ctl name="HPHR Volume" value="14" />
+    </mpath>
+
+    <mpath name="headphones-advanced">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphones-aux">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphones-advanced-44.1">
+        <ctl name="RX1 Digital Volume" value="74" />
+        <ctl name="RX2 Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphones-aux-44.1">
+        <ctl name="RX1 Digital Volume" value="74" />
+        <ctl name="RX2 Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphone-24bit">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphone-24bit-advanced">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
+
+    <mpath name="headphone-24bit-aux">
+        <ctl name="RX1 Mix Digital Volume" value="74" />
+        <ctl name="RX2 Mix Digital Volume" value="74" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
+    </mpath>
     <mpath name="loopback-headphones">
         <ctl name="HPHL Volume" value="15" />
         <ctl name="HPHR Volume" value="15" />
