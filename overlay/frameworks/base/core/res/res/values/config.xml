@@ -192,19 +192,6 @@
         <item>800</item>
     </integer-array>
 
-    <string-array name="config_cdma_home_system">
-        <item>64</item>
-        <item>65</item>
-        <item>66</item>
-    </string-array>
-
-    <!-- service number convert map in roaming network. -->
-    <!-- [dialstring],[replacement][,optional gid] -->
-    <string-array name="dial_string_replace">
-        <item>*611:+19085594899,</item>
-        <item>*86:+1MDN,</item>
-    </string-array>
-
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_volte_available">false</bool>
 
@@ -342,7 +329,7 @@
          A configuration value of RIL_RADIO_TECHNOLOGY_UNKNOWN:0 means
          there is no replacement value and that the default assumption
          for phone type (GSM) should be used. -->
-    <integer name="config_volte_replacement_rat">6</integer>
+    <integer name="config_volte_replacement_rat">0</integer>
 
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
