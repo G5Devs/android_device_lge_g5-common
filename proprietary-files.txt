@@ -33,8 +33,6 @@ bin/msm_irqbalance
 bin/msm_tsens_logging
 bin/myftm
 bin/netmgrd
-bin/pm-proxy
-bin/pm-service
 bin/qcom-system-daemon
 bin/qmuxd
 bin/qseecomd
