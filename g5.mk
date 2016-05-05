@@ -285,8 +285,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal \
-    device/lge/g5-common/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat \
-    device/lge/g5-common/wifi/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+    device/lge/g5-common/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat
 
 PRODUCT_PACKAGES += \
     wcnss_service
