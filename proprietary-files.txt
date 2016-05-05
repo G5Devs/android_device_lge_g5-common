@@ -110,9 +110,7 @@ framework/qcnvitems.jar
 framework/qcrilhook.jar
 framework/QPerformance.jar
 framework/qti-telephony-common.jar
-lib64/egl/libGLES_android.so
 lib64/hw/consumerir.msm8996.so
-lib64/hw/fingerprint.default.so
 lib64/hw/lgkm.default.so
 lib64/hw/lgkm.msm8996.so
 lib64/hw/nfc_lg.default.so
@@ -121,19 +119,15 @@ lib64/hw/sensors.msm8996.so
 lib64/hw/sensors.vr.so
 lib64/hw/wbc_hal.default.so
 lib64/libcir_driver.so
-lib64/libcnefeatureconfig.so
-lib64/libcurl.so
 lib64/libfpfactory.so
 lib64/libfpfactory_jni.so
 lib64/libLGnfc_config.so
 lib64/libLGnfc_jni.so
 lib64/libloc_api_v02.so
 lib64/libloc_ds_api.so
-lib64/libmm-omxcore.so
 lib64/libnfc-nxp-nci.so
 lib64/libOmxVpp.so
 lib64/libq3d.so
-lib64/libqdMetaData.so
 lib64/libqti-iop.so
 lib64/libqti_performance.so
 lib64/libril.so
@@ -153,10 +147,8 @@ lib64/libvss_nv_iface.so
 lib64/libvss_resim_core.so
 lib64/libvss_resim_idl.so
 lib64/libvss_resim_iface.so
-lib/egl/libGLES_android.so
 lib/hw/camera.msm8996.so
 lib/hw/consumerir.msm8996.so
-lib/hw/fingerprint.default.so
 lib/hw/lgkm.default.so
 lib/hw/lgkm.msm8996.so
 lib/hw/nfc_lg.default.so
@@ -164,8 +156,6 @@ lib/hw/sensors.msm8996.so
 lib/hw/wbc_hal.default.so
 lib/libarcsoft_beauty_shot.so
 lib/libcir_driver.so
-lib/libcnefeatureconfig.so
-lib/libcurl.so
 lib/libfpfactory.so
 lib/libfpfactory_jni.so
 lib/libHDR.so
@@ -173,7 +163,6 @@ lib/libLGnfc_config.so
 lib/libLGnfc_jni.so
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
-lib/libmm-omxcore.so
 lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
@@ -181,7 +170,6 @@ lib/libmorpho_image_stab31.so
 lib/libnfc-nxp-nci.so
 lib/libOmxVpp.so
 lib/libq3d.so
-lib/libqdMetaData.so
 lib/libqomx_core.so
 lib/libqti_performance.so
 lib/libril.so
@@ -470,7 +458,6 @@ vendor/lib64/libxml.so
 vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
-vendor/lib64/mediadrm/libdrmclearkeyplugin.so
 vendor/lib64/sensors.ssc.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
@@ -869,8 +856,6 @@ vendor/lib/libSubSystemShutdown.so
 vendor/lib/libsurround_3mic_proc.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libthermalclient.so
-vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
 vendor/lib/libtm_interface.so
 vendor/lib/libtzdrmgenprov.so
 vendor/lib/libulp2.so
@@ -899,7 +884,6 @@ vendor/lib/libxml.so
 vendor/lib/libxt_native.so
 vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/rfsa/adsp/fastrpc_shell_0
 vendor/lib/rfsa/adsp/libadsp_hvx_add_constant.so

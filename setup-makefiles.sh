@@ -158,6 +158,9 @@ PRODUCT_PACKAGES += \\
     libtime_genoff \\
     libTimeService
 
+PRODUCT_PACKAGES += \\
+    libGLES_android
+
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
 

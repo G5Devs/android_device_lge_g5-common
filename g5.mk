@@ -196,7 +196,9 @@ PRODUCT_PACKAGES += \
     libomx_mp3dec_sharedlibrary \
     libomx_sharedlibrary \
     libstagefrighthw \
-    qcmediaplayer
+    qcmediaplayer \
+    libmm-omxcore \
+    libqdMetaData
 
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -271,7 +273,8 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    dhcpcd.conf
+    dhcpcd.conf \
+    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/hostapd.accept:system/etc/wifi/hostapd.accept \
@@ -279,7 +282,6 @@ PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/hostapd.deny:system/etc/wifi/hostapd.deny \
     device/lge/g5-common/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
     device/lge/g5-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/lge/g5-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/lge/g5-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/lge/g5-common/wifi/wpa_supplicant_wcn.conf:system/etc/wifi/wpa_supplicant_wcn.conf
 
@@ -295,11 +297,14 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     curl \
+    libcurl \
     libnl_2 \
     libbson \
     libtinyxml \
     libxml2 \
-    librmnetctl
+    librmnetctl \
+    libcnefeatureconfig \
+    libdrmclearkeyplugin
 
 # Misc properties
 PRODUCT_PROPERTY_OVERRIDES += \
