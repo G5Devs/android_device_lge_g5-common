@@ -43,6 +43,33 @@ on early-init
 #    symlink /sdcard /mnt/sdcard
 #    symlink /sdcard /storage/sdcard0
 
+on init
+    # Set permissions for persist partition
+    mkdir /persist-lg 0771 system system
+    mkdir /mpt 0755 system system
+    mkdir /storage 0751 system sdcard_r
+
+    # setup_fs
+    wait /dev/block/bootdevice/by-name/userdata
+    wait /dev/block/bootdevice/by-name/cache
+    wait /dev/block/bootdevice/by-name/persist
+    wait /dev/block/bootdevice/by-name/mpt
+    wait /dev/block/bootdevice/by-name/sns
+    wait /dev/block/bootdevice/by-name/drm
+    exec u:r:setup_fs:s0 -- /sbin/setup_fs_static \
+        /dev/block/bootdevice/by-name/cust \
+        /dev/block/bootdevice/by-name/OP \
+        /dev/block/bootdevice/by-name/mpt \
+        /dev/block/bootdevice/by-name/userdata \
+        /dev/block/bootdevice/by-name/cache \
+        /dev/block/bootdevice/by-name/sns \
+        /dev/block/bootdevice/by-name/drm \
+        /dev/block/bootdevice/by-name/persist \
+        no_reboot
+
+    write /proc/sys/kernel/panic_on_oops 1
+    write /proc/sys/vm/max_map_count 1000000
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -54,6 +81,12 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
+
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+
+on property:sys.boot_completed=1
+    write /sys/block/dm-0/queue/read_ahead_kb 512
+    write /sys/class/i2c-dev/i2c-6/device/6-0072/enable_irq 1
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -172,7 +205,7 @@ on boot
 
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
-    write /proc/sys/kernel/printk "6 6 1 7"
+    write /proc/sys/kernel/printk "7 6 1 7"
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
@@ -219,17 +252,8 @@ on boot
 
 
     # Touch gestures
-    chown system system /sys/devices/virtual/input/lge_touch/incoming_call
-    chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
-    chown system system /sys/devices/virtual/input/lge_touch/ime_status
     chown system system /sys/devices/virtual/input/lge_touch/keyguard
     chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
-    chown system system /sys/devices/virtual/input/lge_touch/debug_tool
-    chmod 664 /sys/devices/virtual/input/lge_touch/debug_tool
-    chown system system /sys/devices/virtual/input/lge_touch/debug_option
-    chmod 664 /sys/devices/virtual/input/lge_touch/debug_option
-    chown system system /sys/devices/virtual/input/lge_touch/onhand
-    chmod 664 /sys/devices/virtual/input/lge_touch/onhand
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
@@ -238,6 +262,16 @@ on boot
     chmod 664 /sys/devices/virtual/input/lge_touch/quick_cover_status
     chown system system /sys/devices/virtual/input/lge_touch/q_sensitivity
     chmod 664 /sys/devices/virtual/input/lge_touch/q_sensitivity
+    chown system system /sys/devices/virtual/input/lge_touch/incoming_call
+    chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
+    chown system system /sys/devices/virtual/input/lge_touch/ime_status
+    chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
+    chown system system /sys/devices/virtual/input/lge_touch/debug_tool
+    chmod 664 /sys/devices/virtual/input/lge_touch/debug_tool
+    chown system system /sys/devices/virtual/input/lge_touch/debug_option
+    chmod 664 /sys/devices/virtual/input/lge_touch/debug_option
+    chown system system /sys/devices/virtual/input/lge_touch/onhand
+    chmod 664 /sys/devices/virtual/input/lge_touch/onhand
 
     # External Display Watch
     chown system system /sys/devices/virtual/ext_watch/config_fontonoff
@@ -326,6 +360,29 @@ on boot
     chown system input /sys/bus/spi/devices/spi8.1/spi_owner
     chown system input /sys/bus/spi/devices/spi8.1/regulator_enable
     chown system input /sys/bus/spi/devices/spi8.1/wakeup_enable
+
+   # LEDs
+   chown system system /sys/devices/virtual/lg_rgb_led/use_patterns/blink_patterns
+   chmod 0644 /sys/devices/virtual/lg_rgb_led/use_patterns/blink_patterns
+   chown system system /sys/devices/virtual/lg_rgb_led/use_patterns/input_patterns
+   chmod 0644 /sys/devices/virtual/lg_rgb_led/use_patterns/input_patterns
+   chown system system /sys/devices/virtual/lg_rgb_led/use_patterns/onoff_patterns
+   chmod 0644 /sys/devices/virtual/lg_rgb_led/use_patterns/onoff_patterns
+   chown system system /sys/devices/virtual/lg_rgb_led/use_patterns/setting
+   chmod 0644 /sys/devices/virtual/lg_rgb_led/use_patterns/setting
+   write /sys/devices/virtual/lg_rgb_led/use_patterns/setting 1
+
+   write /proc/sys/net/core/netdev_max_backlog 5000
+
+   service bdaddr_loader /system/bin/bdaddr_loader
+      user root
+      group bluetooth net_bt_admin misc net_bt_stack
+      disabled
+      oneshot
+
+on post-fs
+    chmod 0660 /dev/lge_dm_tty0
+    chown system system /dev/lge_dm_tty0
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -471,6 +528,10 @@ on post-fs-data
     chown radio radio /data/misc/radio/copy_complete
     chmod 0660 /data/misc/radio/copy_complete
 
+    # lgvrhid
+    mkdir /data/lgvrhid 0755 root root
+    chmod 0660 /sys/bus/i2c/drivers/anx7418/6-0028/sbu2
+
     # File flags for prebuilt ril db file
     write /data/misc/radio/prebuilt_db_support 1
     chown radio radio /data/misc/radio/prebuilt_db_support
@@ -478,6 +539,40 @@ on post-fs-data
     write /data/misc/radio/db_check_done 0
     chown radio radio /data/misc/radio/db_check_done
     chmod 0660 /data/misc/radio/db_check_done
+
+    # Persist LG folders
+    mkdir /persist-lg/property 0771 system radio
+    mkdir /persist-lg/autosimlock 0770 system system
+    mkdir /persist-lg/poweron 0775 system system
+    mkdir /persist-lg/tmo 0771 radio radio
+    mkdir /persist-lg/callfw 0770 radio radio
+    mkdir /persist-lg/kmstore 0770 system system
+    mkdir /persist-lg/lgdata 0771 radio radio
+    mkdir /persist-lg/lgdrm 0770 lgdrm lgdrm_acc
+    mkdir /persist-lg/widevine 0770 drm system
+    mkdir /persist-lg/firmware 0771 system system
+    mkdir /persist-lg/secclk 0700 system system
+    mkdir /persist-lg/chargerlogo 0770 system system
+    mkdir /persist-lg/multimedia 0770 media divxdrm
+    mkdir /persist-lg/multimedia/nx 0770 media divxdrm
+    mkdir /persist-lg/multimedia/uma 0770 media divxdrm
+    mkdir /persist-lg/multimedia/scnt 0770 media divxdrm
+    mkdir /persist-lg/multimedia/scnt/sdadf 0770 media divxdrm
+    mkdir /persist-lg/mms 0770 system lgmms
+    mkdir /persist-lg/mmoprt 0771 system system
+    mkdir /persist-lg/encryption 0771 system system
+    mkdir /persist-lg/secureks 0770 system system
+    mkdir /persist-lg/lgdata 0775 radio radio
+    mkdir /persist-lg/audio 0771 system system
+    mkdir /persist-lg/property 0771 system radio
+    chown media media /persist-lg/audio
+
+    #Widevine firmware copy
+    exec /system/bin/cpfirmware widevine /persist-lg/firmware
+
+   # Thermal Daemon
+   chown system system /sys/class/leds/lcd-backlight/thermald_status
+   chmod 0644 /sys/class/leds/lcd-backlight/thermald_status
 
 service iop /system/bin/iop
     class main
@@ -1254,15 +1349,17 @@ service fidod /system/bin/fidod
 # ramoops backup function service
 service ramoops_backup /system/bin/sh /ramoops_backup.sh
     class main
-    disabled
+    user root
     oneshot
 
 # time_in_state
 service time_in_state /system/bin/sh /init.time_in_state.sh
     class main
-    disabled
+    user root
     oneshot
 
-on property:init.svc.bootanim=stopped
-    start time_in_state
-    start ramoops_backup
+# time_in_state
+service loggy /system/bin/sh /loggy.sh
+    class main
+    user root
+    oneshot

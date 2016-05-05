@@ -251,7 +251,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     ramoops_backup.sh \
-    init.time_in_state.sh
+    init.time_in_state.sh \
+    loggy.sh
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -329,7 +330,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1
 
 # Debug
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
     ro.adb.secure=0 \
-    persist.sys.usb.config=adb
+    persist.sys.usb.config=adb \
+    persist.sys.emmc_size=32GB \
+    setprop ro.device.memory.system 0 \
+    setprop ro.device.memory.internal 32 \
