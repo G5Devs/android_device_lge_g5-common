@@ -29,9 +29,9 @@ TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
 $(call inherit-product-if-exists, build/target/product/verity.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxxhdpi-4096-dalvik-heap.mk)
 
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-4096-hwui-memory.mk)
 
 # Add WiFi Config files
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
@@ -98,6 +98,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/audio/audio_effects.conf:system/etc/audio_effects.conf \
     device/lge/g5-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/lge/g5-common/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
     device/lge/g5-common/audio/lge_model_mixer_paths_tasha.xml:system/etc/lge_model_mixer_paths_tasha.xml \
     device/lge/g5-common/audio/lge_operator_mixer_paths_tasha.xml:system/etc/lge_operator_mixer_paths_tasha.xml \
     device/lge/g5-common/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
@@ -257,6 +258,7 @@ PRODUCT_PACKAGES += \
 # Thermal Engine
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/configs/thermal-engine-8996.conf:system/etc/thermal-engine-8996.conf \
+    device/lge/g5-common/configs/thermal-engine-default.conf:system/etc/thermal-engine-default.conf \
     device/lge/g5-common/configs/thermal-engine.conf:system/etc/thermal-engine.conf
 
 # Whitelistedapps
@@ -269,14 +271,22 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    dhcpcd.conf \
-    wpa_supplicant \
-    wpa_supplicant.conf \
-    wpa_supplicant_overlay.conf \
-    p2p_supplicant_overlay.conf \
-    hostapd_default.conf \
-    hostapd.accept \
-    hostapd.deny
+    dhcpcd.conf
+
+PRODUCT_COPY_FILES += \
+    device/lge/g5-common/wifi/hostapd.accept:system/etc/wifi/hostapd.accept \
+    device/lge/g5-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    device/lge/g5-common/wifi/hostapd.deny:system/etc/wifi/hostapd.deny \
+    device/lge/g5-common/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
+    device/lge/g5-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/lge/g5-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/lge/g5-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/lge/g5-common/wifi/wpa_supplicant_wcn.conf:system/etc/wifi/wpa_supplicant_wcn.conf
+
+PRODUCT_COPY_FILES += \
+    device/lge/g5-common/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal \
+    device/lge/g5-common/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat \
+    device/lge/g5-common/wifi/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
     wcnss_service
