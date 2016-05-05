@@ -249,6 +249,10 @@ PRODUCT_PACKAGES += \
     init.qcom.sensors.sh \
     ueventd.qcom.rc
 
+PRODUCT_PACKAGES += \
+    ramoops_backup.sh \
+    init.time_in_state.sh
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl

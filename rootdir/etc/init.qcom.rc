@@ -99,6 +99,9 @@ on boot
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 
+    # Create a dir for ramoops dumps
+    mkdir /data/ramoops 0750 root log
+
     setprop wifi.interface wlan0
 
 #   Define TCP buffer sizes for various networks
@@ -1247,3 +1250,19 @@ service fidod /system/bin/fidod
     class late_start
     user system
     group system
+
+# ramoops backup function service
+service ramoops_backup /system/bin/sh /ramoops_backup.sh
+    class main
+    disabled
+    oneshot
+
+# time_in_state
+service time_in_state /system/bin/sh /init.time_in_state.sh
+    class main
+    disabled
+    oneshot
+
+on property:init.svc.bootanim=stopped
+    start time_in_state
+    start ramoops_backup
