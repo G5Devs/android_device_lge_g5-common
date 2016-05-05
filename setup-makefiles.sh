@@ -238,9 +238,6 @@ LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libTimeService.so
 LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libTimeService.so
 include \$(BUILD_PREBUILT)
 
-\$(shell mkdir -p \$(PRODUCT_OUT)/system/vendor/lib/egl && pushd \$(PRODUCT_OUT)/system/vendor/lib > /dev/null && ln -s egl/libEGL_adreno.so libEGL_adreno.so && popd > /dev/null)
-\$(shell mkdir -p \$(PRODUCT_OUT)/system/vendor/lib64/egl && pushd \$(PRODUCT_OUT)/system/vendor/lib64 > /dev/null && ln -s egl/libEGL_adreno.so libEGL_adreno.so && popd > /dev/null)
-
 endif
 
 EOF
