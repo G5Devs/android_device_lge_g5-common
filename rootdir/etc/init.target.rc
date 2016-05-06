@@ -33,11 +33,6 @@ on early-init
     symlink /data/tombstones /tombstones
     mkdir /dsp 0771 media media
 
-# TODO: This MUST be changed to mount device in LGE platform.
-#on post-fs
-#    export LD_PRELOAD libNimsWrap.so
-
-# TODO: This MUST be changed to mount device in LGE platform.
 on fs
     wait /dev/block/bootdevice
     mount_all fstab.qcom
@@ -212,10 +207,10 @@ on property:seempd.start=1
 on property:seempd.start=0
     stop seempd
 
-service secotad /system/bin/secotad
-   class late_start
-   user system
-   group system
+#service secotad /system/bin/secotad
+#   class late_start
+#   user system
+#   group system
 
 # TODO: This MUST be disabled not use 'mpdecision' in LGE platform.
 #service mpdecision /system/bin/mpdecision --avg_comp
@@ -327,7 +322,6 @@ service usf-post-boot /system/bin/sh /system/etc/usf_post_boot.sh
 # TODO: This MUST be disabled not use 'usf-post-boot' in LGE platform.
 #on property:init.svc.bootanim=stopped
 #    start usf-post-boot
-
 
 service pd_mapper /system/vendor/bin/pd-mapper
      class core

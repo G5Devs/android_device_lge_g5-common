@@ -47,7 +47,10 @@ on init
     # Set permissions for persist partition
     mkdir /persist-lg 0771 system system
     mkdir /mpt 0755 system system
-    mkdir /storage 0751 system sdcard_r
+
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
     # setup_fs
     wait /dev/block/bootdevice/by-name/userdata
@@ -141,12 +144,10 @@ on boot
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
-
     setprop ro.telephony.call_ring.multiple false
 
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
@@ -580,11 +581,10 @@ service iop /system/bin/iop
     group root
     disabled
 
-# TODO: This MUST be disabled not use 'qcom system daemon' in LGE platform.
-#service qcomsysd /system/bin/qcom-system-daemon
-#    class main
-#    user root
-#    group root qcom_diag
+service qcomsysd /system/bin/qcom-system-daemon
+    class main
+    user root
+    group root qcom_diag
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -1246,56 +1246,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     user root
     group root
     disabled
-
-service wfdservice /system/bin/wfdservice
-    class main
-    user system
-    group audio camera inet net_bt_stack drmrpc media_rw media input net_admin
-    #removed these because of limit of 12 groups
-    #graphics net_bt net_bt_admin bluetooth
-
-service RIDL /system/vendor/bin/RIDLClient.exe
-    class late_start
-    oneshot
-    user system
-    group system inet log sdcard_r sdcard_rw qcom_diag
-    # removed for security team - misc bluetooth radio gps wifi diag media_rw
-    # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_raw net_admin
-
-#LGE_CHANGE_S, Advanced MOCA, seungyeol.seo@lge.com
-service moca_service /system/bin/advanced_moca -s
-    class late_start
-    user root
-    group system sdcard_r sdcard_rw radio
-    disabled
-    oneshot
-    socket Full.MOCA.port stream 660 system system
-
-on property:persist.service.moca.enable=1
-   start moca_service
-
-
-service voqas_service /system/bin/voqas -s
-    class late_start
-    user root
-    group system sdcard_r sdcard_rw radio audio
-    disabled
-    oneshot
-    socket Full.VOQAS.port stream 660 system system
-
-on property:sys.voqas.service.enable=1
-   start voqas_service
-
-service moca_service_disable /system/bin/advanced_moca -k
-    class late_start
-    user root
-    group system sdcard_r sdcard_rw radio
-    disabled
-    oneshot
-
-on property:persist.service.moca.enable=0
-   start moca_service_disable
-#LGE_CHANGE_E, Advanced MOCA, seungyeol.seo@lge.com
 
 # Coresight early boot service
 service cs-early-boot /system/bin/sh /persist/coresight/qdss.agent.sh early-boot /system/etc/init.qcom.debug.sh
