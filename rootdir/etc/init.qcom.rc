@@ -25,50 +25,21 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-# TODO: This MUST be blocked not use in LGE device configuration.
 import init.qcom.usb.rc
 import init.target.rc
-import init.qcom.factory.rc
+#import init.qcom.factory.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
 
-# TODO: This MUST be disabled not use 'sdcard' in LGE device.
-#on init
-#    # Set permissions for persist partition
-#    mkdir /persist 0771 system system
-#
-#    # Support legacy paths
-#    symlink /sdcard /mnt/sdcard
-#    symlink /sdcard /storage/sdcard0
-
 on init
     # Set permissions for persist partition
-    mkdir /persist-lg 0771 system system
-    mkdir /mpt 0755 system system
+    mkdir /persist 0771 system system
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
-
-    # setup_fs
-    wait /dev/block/bootdevice/by-name/userdata
-    wait /dev/block/bootdevice/by-name/cache
-    wait /dev/block/bootdevice/by-name/persist
-    wait /dev/block/bootdevice/by-name/mpt
-    wait /dev/block/bootdevice/by-name/sns
-    wait /dev/block/bootdevice/by-name/drm
-    exec u:r:setup_fs:s0 -- /sbin/setup_fs_static \
-        /dev/block/bootdevice/by-name/cust \
-        /dev/block/bootdevice/by-name/OP \
-        /dev/block/bootdevice/by-name/mpt \
-        /dev/block/bootdevice/by-name/userdata \
-        /dev/block/bootdevice/by-name/cache \
-        /dev/block/bootdevice/by-name/sns \
-        /dev/block/bootdevice/by-name/drm \
-        /dev/block/bootdevice/by-name/persist \
-        no_reboot
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/vm/max_map_count 1000000
@@ -196,6 +167,21 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
+    # Permissions for System Server and daemons.
+    chown radio system /sys/android_power/state
+    chown radio system /sys/android_power/request_state
+    chown radio system /sys/android_power/acquire_full_wake_lock
+    chown radio system /sys/android_power/acquire_partial_wake_lock
+    chown radio system /sys/android_power/release_wake_lock
+    chown system system /sys/power/autosleep
+    chown system system /sys/power/state
+    chown system system /sys/power/wakeup_count
+    chown radio system /sys/power/wake_lock
+    chown radio system /sys/power/wake_unlock
+    chmod 0660 /sys/power/state
+    chmod 0660 /sys/power/wake_lock
+    chmod 0660 /sys/power/wake_unlock
+
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
     # the connection they belong to.
@@ -317,6 +303,10 @@ on boot
     # Thermal BL Max
     chown system system /sys/devices/virtual/graphics/fb0/thermal_blmax
     chmod 664 /sys/devices/virtual/graphics/fb0/thermal_blmax
+
+    # AutoRefresh sysfs
+    chown system system /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
+    chmod 664 /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
 
     # Image Tune
     chown system system /sys/class/panel/img_tune/sharpness
