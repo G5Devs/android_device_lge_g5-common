@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Inherit proprietary blobs
-$(call inherit-product-if-exists, vendor/lge/g5/g5-vendor.mk)
-
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += device/lge/g5-common/overlay
 
