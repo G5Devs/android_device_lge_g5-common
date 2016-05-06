@@ -29,9 +29,12 @@ TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
 $(call inherit-product-if-exists, build/target/product/verity.mk)
-$(call inherit-product, frameworks/native/build/phone-xxxhdpi-4096-dalvik-heap.mk)
 
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-4096-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxxhdpi-4096-hwui-memory.mk)
+
+# System properties
+-include device/lge/g5-common/system_prop.mk
 
 # Add WiFi Config files
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
@@ -311,29 +314,11 @@ PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     libdrmclearkeyplugin
 
-# Misc properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    persist.radio.apm_sim_not_pwdn=1 \
-    persist.radio.sib16_support=1 \
-    persist.radio.custom_ecc=1
-
-# Reduce client buffer size for fast audio output tracks
-PRODUCT_PROPERTY_OVERRIDES += \
-    af.fast_track_multiplier=1
-
-# Low latency audio buffer size in frames
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio_hal.period_size=192
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=1
-
 # Debug
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
     ro.adb.secure=0 \
-    persist.sys.usb.config=adb \
+    persist.sys.usb.config=mtp \
     persist.sys.emmc_size=32GB \
-    setprop ro.device.memory.system 0 \
-    setprop ro.device.memory.internal 32 \
+    ro.device.memory.system=0 \
+    ro.device.memory.internal=32 \
