@@ -266,7 +266,8 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    wpa_supplicant
 
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/hostapd.accept:system/etc/wifi/hostapd.accept \
