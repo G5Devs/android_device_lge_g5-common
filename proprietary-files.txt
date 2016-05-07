@@ -926,3 +926,4 @@ vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin
 vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin
 vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin
 vendor/qcril.db
+lib/libfilm_emulation.so
