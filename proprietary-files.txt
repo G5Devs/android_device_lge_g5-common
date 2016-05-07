@@ -42,6 +42,7 @@ bin/secure_camera_sample_client
 bin/seempd
 bin/sensors.qcom
 bin/time_daemon
+bin/triton
 bin/xtwifi-client
 bin/yuvtool
 etc/camera/imx234_chromatix.xml
@@ -158,6 +159,7 @@ lib/hw/wbc_hal.default.so
 lib/lib_fpc_tac_shared.so
 lib/libarcsoft_beauty_shot.so
 lib/libcir_driver.so
+lib/libfilm_emulation.so
 lib/libfpfactory.so
 lib/libfpfactory_jni.so
 lib/libgps.utils.so
@@ -926,4 +928,3 @@ vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin
 vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin
 vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin
 vendor/qcril.db
-lib/libfilm_emulation.so
