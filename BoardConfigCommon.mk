@@ -149,6 +149,9 @@ TARGET_POWERHAL_VARIANT := qcom
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
+# RIL
+BOARD_RIL_CLASS := ../../../device/lge/g5-common/ril/
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/lge/g5-common/sepolicy

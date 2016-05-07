@@ -49,7 +49,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rmnet.data.enable=true \
     ro.use_data_netmgrd=true
 
-
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
@@ -136,7 +135,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_2="" \
     persist.rild.nitz_short_ons_3="" \
     ril.subscription.types=NV,RUIM \
-    rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+    rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
+    ro.telephony.ril_class=LgeLteRIL
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
