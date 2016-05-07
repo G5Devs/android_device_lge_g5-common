@@ -242,7 +242,8 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    librmnetctl
+    librmnetctl \
+    liblge
 
 # Lights
 PRODUCT_PACKAGES += \
