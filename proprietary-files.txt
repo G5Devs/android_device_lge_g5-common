@@ -53,22 +53,29 @@ vendor/lib64/libaudioalsa.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 vendor/lib/libaudioalsa.so
+vendor/lib/libqct_resampler.so
+vendor/lib/soundfx/libqcbassboost.so
+vendor/lib/soundfx/libqcreverb.so
+vendor/lib/soundfx/libqcvirt.so
 
 # Activity recognition
 vendor/lib64/hw/activity_recognition.msm8996.so
 vendor/lib/hw/activity_recognition.msm8996.so
+
+# Bluetooth
+bin/bdaddr_loader
+bin/btnvtool
+vendor/lib64/libbtnv.so
 
 # Camera
 bin/mm-qcamera-app
 bin/mm-qcamera-daemon
 lib/hw/camera.msm8996.so
 lib/libarcsoft_beauty_shot.so
+lib/libfilm_emulation.so
 lib/libHDR.so
 lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
@@ -76,7 +83,11 @@ lib/libmmjpeg_interface.so
 lib/libmorpho_image_stab31.so
 lib/libmorpho_superzoom.so
 lib/libqomx_core.so
+lib/libVDBase.so
 lib/libVDLowLightAPI.so
+vendor/lib64/lib-imscamera.so
+vendor/lib64/libmm-abl-oem.so
+vendor/lib64/libmm-abl.so
 vendor/lib64/libmmcamera2_frame_algorithm.so
 vendor/lib64/libmmcamera2_is.so
 vendor/lib64/libmmcamera2_stats_algorithm.so
@@ -84,9 +95,12 @@ vendor/lib64/libmmcamera_dbg.so
 vendor/lib64/libmmcamera_tintless_algo.so
 vendor/lib64/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib64/libscalar.so
+vendor/lib/lib-imscamera.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
+vendor/lib/libmm-abl-oem.so
+vendor/lib/libmm-abl.so
 vendor/lib/libmmcamera2_aec_lg.so
 vendor/lib/libmmcamera2_awb_lg.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -163,6 +177,8 @@ vendor/lib/libmmcamera_isp_scaler_viewfinder46.so
 vendor/lib/libmmcamera_isp_sce40.so
 vendor/lib/libmmcamera_isp_snr47.so
 vendor/lib/libmmcamera_isp_sub_module.so
+vendor/lib/libmmcamera_pdaf.so
+vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
 vendor/lib/libmmcamera_t4ka3.so
 vendor/lib/libmmcamera_t4ka3_eeprom.so
@@ -185,9 +201,11 @@ vendor/lib/libqomx_jpegenc_pipe.so
 vendor/lib/libactuator_ad5816g.so
 vendor/lib/libactuator_ad5823.so
 vendor/lib/libactuator_bu24333gwl.so
+vendor/lib/libactuator_bu64244gwz.so
 vendor/lib/libactuator_bu64297.so
 vendor/lib/libactuator_dw9714.so
 vendor/lib/libactuator_dw9716.so
+vendor/lib/libactuator_dw9761b.so
 vendor/lib/libactuator_lc898122.so
 vendor/lib/libactuator_lc898122_claf.so
 vendor/lib/libactuator_lc898212xd.so
@@ -276,6 +294,15 @@ etc/camera/msm8996_camera_LG.xml
 etc/camera/t4ka3_chromatix.xml
 
 # Camera firmware
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw
+etc/firmware/a420_pfp.fw
+etc/firmware/a420_pm4.fw
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
@@ -376,15 +403,34 @@ lib/lib_fpc_tac_shared.so
 lib/libfpfactory.so
 lib/libfpfactory_jni.so
 
+# FM
+bin/fm_qsoc_patches
+bin/fmconfig
+
 # GPS
 bin/loc_launcher
+bin/lowi-server
+bin/xtwifi-client
+etc/flp.conf
+etc/izat.conf
+etc/sap.conf
+etc/xtwifi.conf
 lib64/libgps.utils.so
 lib64/libloc_api_v02.so
+lib64/libloc_core.so
 lib64/libloc_ds_api.so
+lib64/libloc_eng.so
 lib/libgps.utils.so
 lib/libloc_api_v02.so
+lib/libloc_core.so
 lib/libloc_ds_api.so
+lib/libloc_eng.so
+vendor/bin/slim_daemon
 vendor/lib64/hw/flp.default.so
+vendor/lib64/libalarmservice_jni.so
+vendor/lib64/libasn1cper.so
+vendor/lib64/libasn1crt.so
+vendor/lib64/libasn1crtx.so
 vendor/lib64/libflp.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_core.so
@@ -392,11 +438,32 @@ vendor/lib64/liblbs_core.so
 vendor/lib64/libloc_ext.so
 vendor/lib64/libloc_xtra.so
 vendor/lib64/liblocationservice.so
+vendor/lib64/liblocationservice_glue.so
+vendor/lib64/liblowi_client.so
+vendor/lib64/liblowi_wifihal.so
+vendor/lib64/liblowi_wifihal_nl.so
+vendor/lib64/libulp2.so
+vendor/lib64/libxt_native.so
+vendor/lib64/libxtadapter.so
+vendor/lib64/libxtwifi_ulp_adaptor.so
 vendor/lib/hw/flp.default.so
+vendor/lib/libalarmservice_jni.so
+vendor/lib/libasn1cper.so
+vendor/lib/libasn1crt.so
+vendor/lib/libasn1crtx.so
 vendor/lib/libflp.so
+vendor/lib/libgeofence.so
+vendor/lib/liblbs_core.so
 vendor/lib/liblocationservice.so
+vendor/lib/liblocationservice_glue.so
+vendor/lib/liblowi_client.so
+vendor/lib/libxt_native.so
+vendor/lib/libxtadapter.so
+vendor/lib/libxtwifi_ulp_adaptor.so
 
 # Graphics
+lib64/libq3d.so
+lib/libq3d.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -473,12 +540,16 @@ vendor/lib/liblistenjni.so
 vendor/lib/liblistensoundmodel2.so
 
 # Media
+lib64/libOmxVpp.so
+lib/libOmxVpp.so
 vendor/lib64/libFileMux.so
 vendor/lib64/libhdcp1prov.so
 vendor/lib64/libI420colorconvert.so
 vendor/lib64/libmm-color-convertor.so
 vendor/lib64/libmm-hdcpmgr.so
 vendor/lib64/libmmosal.so
+vendor/lib64/libmmparser.so
+vendor/lib64/libmmparser_lite.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxAlacDec.so
 vendor/lib64/libOmxAmrwbplusDec.so
@@ -503,11 +574,14 @@ vendor/lib64/libwfduibcsinkinterface.so
 vendor/lib64/libwfduibcsrc.so
 vendor/lib64/libwfduibcsrcinterface.so
 vendor/lib/libFileMux.so
+vendor/lib/libFlacSwDec.so
 vendor/lib/libhdcp1prov.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libmm-hdcpmgr.so
 vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
+vendor/lib/libmmparser_lite.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAlacDec.so
 vendor/lib/libOmxAmrwbplusDec.so
@@ -548,6 +622,10 @@ etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
 
 # NFC firmware
+lib64/hw/nfc_lg.default.so
+lib64/libnfc-nxp-nci.so
+lib/hw/nfc_lg.default.so
+lib/libnfc-nxp-nci.so
 vendor/firmware/libpn548ad_fw.so
 
 # Peripheral manager
@@ -559,6 +637,9 @@ vendor/lib/libperipheral_client.so
 # Perf
 bin/energy-awareness
 bin/msm_irqbalance
+framework/QPerformance.jar
+lib64/libqti_performance.so
+lib/libqti_performance.so
 vendor/bin/perfd
 vendor/lib64/libqti-perfd-client.so
 vendor/lib/libqti-perfd-client.so
@@ -613,6 +694,7 @@ vendor/lib/libqcci_legacy.so
 vendor/lib/libqcmaputils.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
+vendor/lib/libqisl.so
 vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
@@ -637,6 +719,9 @@ bin/netmgrd
 bin/qmuxd
 bin/radish
 bin/rmt_storage
+framework/qcnvitems.jar
+framework/qcrilhook.jar
+framework/qti-telephony-common.jar
 lib64/libril.so
 lib64/librilutils.so
 lib64/libuicc.so
@@ -673,17 +758,34 @@ vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneconn.so
 vendor/lib64/libcneqmiutils.so
 vendor/lib64/libconfigdb.so
+vendor/lib64/libconnctrl.so
+vendor/lib64/libdataitems.so
+vendor/lib64/libdpmctmgr.so
+vendor/lib64/libdpmfdmgr.so
+vendor/lib64/libdpmframework.so
+vendor/lib64/libdpmnsrm.so
+vendor/lib64/libdpmtcm.so
+vendor/lib64/libmdsprpc.so
+vendor/lib64/libnetmgr.so
 vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
-vendor/lib64/libnetmgr.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneconn.so
 vendor/lib/libcneqmiutils.so
-vendor/lib/libnetmgr.so
 vendor/lib/libconfigdb.so
+vendor/lib/libconnctrl.so
+vendor/lib/libdataitems.so
+vendor/lib/libdisp-aba.so
+vendor/lib/libdpmctmgr.so
+vendor/lib/libdpmfdmgr.so
+vendor/lib/libdpmframework.so
+vendor/lib/libdpmnsrm.so
+vendor/lib/libdpmtcm.so
+vendor/lib/libmdsprpc.so
+vendor/lib/libnetmgr.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qc-radioconfig.so
 vendor/lib/libril-qcril-hook-oem.so
@@ -739,7 +841,10 @@ vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 
 # Misc
+bin/triton
+lib64/hw/lgkm.default.so
 lib64/hw/lgkm.msm8996.so
 lib64/hw/wbc_hal.default.so
+lib/hw/lgkm.default.so
 lib/hw/lgkm.msm8996.so
 lib/hw/wbc_hal.default.so
