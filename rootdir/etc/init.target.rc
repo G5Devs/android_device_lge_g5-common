@@ -31,18 +31,16 @@ on early-init
     mkdir /firmware 0771 system system
     symlink /data/tombstones /tombstones
 
+    export ANDROID_DATA /data
+    export ANDROID_ROOT /system
+    export EXTERNAL_STORAGE /sdcard
+
 on fs
     wait /dev/block/bootdevice
     mount_all fstab.qcom
     swapon_all fstab.qcom
 
 on post-fs
-    chown system system /persist-lg
-    chmod 0771 /persist-lg
-
-    chown system system /sns
-    chmod 0755 /sns
-
     write /sys/devices/platform/lge-qfprom/sec_read 0
 
 on post-fs-data
@@ -60,14 +58,10 @@ on post-fs-data
     mkdir /data/misc/qvop 0660 system system
     mkdir /data/misc/audio_pp 0771 media audio
 
-# TODO: This MUST be disabled not use led control with wled sys node in LGE platform.
-#on property:init.svc.bootanim=running
-#    write /sys/class/leds/wled/brightness 4095
-
 on boot
     start rmt_storage
     start rfs_access
-# access permission for secure touch
+    # access permission for secure touch
     chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
     chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
     chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
@@ -116,30 +110,6 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
-# TODO: This MUST be disabled not use 'qcom' in LGE platform.
-## Allow usb charging to be disabled peristently
-#on property:persist.usb.chgdisabled=1
-#    write /sys/class/power_supply/battery/charging_enabled 0
-#
-#on property:persist.usb.chgdisabled=0
-#    write /sys/class/power_supply/battery/charging_enabled 1
-
-# TODO: This MUST be disabled not use 'qcom qrngp' in LGE platform.
-#service qrngd /system/bin/qrngd -f
-#   class main
-#   user root
-#   group root
-#
-#service qrngp /system/bin/qrngp
-#    class main
-#    user root
-#    group root
-#    oneshot
-#    disabled
-#
-#on property:sys.boot_completed=1
-#    start qrngp
-
 service qseecomd /system/bin/qseecomd
    class core
    user root
@@ -151,7 +121,7 @@ service perfd /system/vendor/bin/perfd
    disabled
 
 service seempd /system/bin/seempd
-#   class late_start
+#  class late_start
    user system
    group system
    socket seempdw dgram 0666 system system
@@ -162,22 +132,6 @@ on property:seempd.start=1
 on property:seempd.start=0
     stop seempd
 
-#service secotad /system/bin/secotad
-#   class late_start
-#   user system
-#   group system
-
-# TODO: This MUST be disabled not use 'mpdecision' in LGE platform.
-#service mpdecision /system/bin/mpdecision --avg_comp
-#   user root
-#   disabled
-
-# TODO: This MUST be disabled not use 'qosmgrd' in LGE platform.
-#service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
-#   user system
-#   group system
-#   disabled
-#
 service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
@@ -188,16 +142,6 @@ service thermal-engine /system/vendor/bin/thermal-engine
    socket thermal-send-client stream 0666 system system
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
-
-# TODO: This MUST be disabled not use 'security-check1' in LGE platform.
-#service security-check1 /sbin/security_boot_check system
-#    class core
-#    oneshot
-
-# TODO: This MUST be disabled not use 'security-check1' in LGE platform.
-#service security-check2 /sbin/security_boot_check recovery
-#    class core
-#    oneshot
 
 service time_daemon /system/bin/time_daemon
    class late_start
@@ -274,10 +218,6 @@ service usf-post-boot /system/bin/sh /system/etc/usf_post_boot.sh
     disabled
     oneshot
 
-# TODO: This MUST be disabled not use 'usf-post-boot' in LGE platform.
-#on property:init.svc.bootanim=stopped
-#    start usf-post-boot
-
 service pd_mapper /system/vendor/bin/pd-mapper
      class core
      disabled
@@ -288,51 +228,6 @@ on property:persist.sys.pd_enable=1
 
 on property:persist.sys.pd_enable=0
      write /sys/class/service_locator/service_locator_status 0
-
-# TODO: This MUST be disabled not use 'qcom ims daemon' in LGE platform.
-#service imsqmidaemon /system/bin/imsqmidaemon
-#    class main
-#    user system
-#    socket ims_qmid stream 0660 system radio
-#    group radio net_raw log qcom_diag
-
-# TODO: This MUST be disabled not use 'qimsdatadaemon' in LGE platform.
-#service imsdatadaemon /system/bin/imsdatadaemon
-#    class main
-#    user system
-#    socket ims_datad stream 0660 system radio
-#    group system wifi radio inet net_raw log qcom_diag net_admin
-#    disabled
-
-# TODO: This MUST be disabled not use 'qimsdatadaemon' in LGE platform.
-## QCA1530 SoC late_start group trigger
-#service gnss-init /system/vendor/bin/gnss.qca1530.sh init
-#   class late_start
-#   oneshot
-
-# TODO: This MUST be disabled not use 'qcom ims daemon' in LGE platform.
-#on property:sys.ims.QMI_DAEMON_STATUS=1
-#    start imsdatadaemon
-
-# TODO: This MUST be disabled not use 'ims_rtp_daemon' in LGE platform.
-#service ims_rtp_daemon /system/bin/ims_rtp_daemon
-#   class main
-#   user system
-#   socket ims_rtpd stream 0660 system radio
-#   group radio net_raw diag qcom_diag log
-#   disabled
-
-# TODO: This MUST be disabled not use 'imscmservice' in LGE platform.
-#service imscmservice /system/bin/imscmservice
-#   class main
-#   user system
-#   group radio net_raw diag qcom_diag log
-#   disabled
-
-# TODO: This MUST be disabled not use 'imscmservice' in LGE platform.
-#on property:sys.ims.DATA_DAEMON_STATUS=1
-#   start ims_rtp_daemon
-#   start imscmservice
 
 service dts_configurator /system/bin/dts_configurator
     class late_start
@@ -354,7 +249,6 @@ service ppd /system/bin/mm-pp-dpps
     user system
     group system graphics
     socket pps stream 0660 system system
-#   disabled
 
 service tlocd /system/bin/tloc_daemon
     class late_start

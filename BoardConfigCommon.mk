@@ -150,6 +150,7 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 # RIL
+TARGET_RIL_VARIANT := caf
 BOARD_RIL_CLASS := ../../../device/lge/g5-common/ril/
 
 # SELinux

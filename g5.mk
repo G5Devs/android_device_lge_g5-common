@@ -227,6 +227,7 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.factory.rc \
     init.qcom.sh \
     init.qcom.class_core.sh \
@@ -234,11 +235,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.qcom.sensors.sh \
     ueventd.qcom.rc
-
-PRODUCT_PACKAGES += \
-    ramoops_backup.sh \
-    init.time_in_state.sh \
-    loggy.sh
 
 # RIL
 PRODUCT_PACKAGES += \

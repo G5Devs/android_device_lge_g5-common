@@ -26,8 +26,9 @@
 #
 
 import init.qcom.usb.rc
-import init.target.rc
+import init.qcom.power.rc
 import init.qcom.factory.rc
+import init.target.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -37,34 +38,12 @@ on init
     # Load LGE Symbols
     export LD_SHIM_LIBS /system/lib/libril.so|liblge.so:/system/lib64/libril.so|liblge.so
 
-    # Set permissions for persist partition
-    #mkdir /persist 0771 system system
-
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
-    # Set permissions for persist partition
-    mkdir /persist-lg 0771 system system
-    mkdir /mpt 0755 system system
-    mkdir /storage 0751 system sdcard_r
 
-    # setup_fs
-    wait /dev/block/bootdevice/by-name/userdata
-    wait /dev/block/bootdevice/by-name/cache
-    wait /dev/block/bootdevice/by-name/persist
-    wait /dev/block/bootdevice/by-name/mpt
-    wait /dev/block/bootdevice/by-name/sns
-    wait /dev/block/bootdevice/by-name/drm
-    exec u:r:setup_fs:s0 -- /sbin/setup_fs_static \
-        /dev/block/bootdevice/by-name/cust \
-        /dev/block/bootdevice/by-name/OP \
-        /dev/block/bootdevice/by-name/mpt \
-        /dev/block/bootdevice/by-name/userdata \
-        /dev/block/bootdevice/by-name/cache \
-        /dev/block/bootdevice/by-name/sns \
-        /dev/block/bootdevice/by-name/drm \
-        /dev/block/bootdevice/by-name/persist \
-        no_reboot
+    mkdir /sns/cal/ 0755 system system
+    mkdir /sns/fingerprint 0775 system system
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/vm/max_map_count 1000000
@@ -232,6 +211,10 @@ on boot
     chmod 644 /sys/class/graphics/fb0/mdp/vfps_fcnt
     chown system system /sys/class/graphics/fb0/mdp/vfps_ratio
     chmod 644 /sys/class/graphics/fb0/mdp/vfps_ratio
+    chown system system /sys/class/graphics/fb0/sp_link_backlight_off
+    chmod 644 /sys/class/graphics/fb0/sp_link_backlight_off
+    chown system system /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
+    chmod 664 /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
 
     #create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -328,10 +311,6 @@ on boot
     # Thermal BL Max
     chown system system /sys/devices/virtual/graphics/fb0/thermal_blmax
     chmod 664 /sys/devices/virtual/graphics/fb0/thermal_blmax
-
-    # AutoRefresh sysfs
-    chown system system /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
-    chmod 664 /sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en
 
     # Image Tune
     chown system system /sys/class/panel/img_tune/sharpness
@@ -430,7 +409,7 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     # chown dhcp dhcp /data/misc/dhcp
     chown dhcp system /data/misc/dhcp
-#[LGE_WIFI][CT][hayun.kim@lge.com] : [SPEC] DHCPV6 Feature
+    #[LGE_WIFI][CT][hayun.kim@lge.com] : [SPEC] DHCPV6 Feature
     mkdir /data/misc/wide-dhcpv6 0770 dhcp dhcp
     chown dhcp system /data/misc/wide-dhcpv6
 
@@ -634,9 +613,6 @@ on property:persist.sys.ssr.enable_ramdumps=1
 on property:persist.sys.ssr.enable_ramdumps=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
 
-#on property:sys.boot_completed=1
-    #write /dev/kmsg "Boot completed "
-
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
@@ -756,6 +732,7 @@ service hci_filter_root /system/bin/wcnss_filter
 #    class core
 #    user root
 #    oneshot
+
 service config_bt_addr /system/bin/btnvtool -O
     class core
     user bluetooth
@@ -986,33 +963,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
-
-# TODO: This MUST be disabled not use 'ptt socket app' in LGE platform.
-#service ptt_socket_app /system/bin/ptt_socket_app -d
-#   class main
-#   user root
-#   group root
-#   oneshot
-
-# TODO: This MUST be disabled not use 'ptt ffbm' in LGE platform.
-#service ptt_ffbm /system/bin/ptt_socket_app -f -d
-#    user root
-#    group root
-#    disabled
-#    oneshot
-
-
-# TODO: This MUST be removed in LGE platform
-#service cnss_diag /system/bin/cnss_diag -q -f
-#    class main
-#    user root
-#    group root
-#    oneshot
-
-# TODO: This MUST be removed in LGE platform
-#service cnss-daemon /system/bin/cnss-daemon -n -l
-#    class late_start
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
@@ -1088,14 +1038,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     disabled
     oneshot
 
-# remove init.qcom.testscripts.sh
-#service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
-#    seclabel u:r:qti-testscripts:s0
-
 service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
     class late_start
     group wifi inet
@@ -1108,18 +1050,8 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-# remove init.qcom.zram.sh
-#service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
-#   class late_start
-#   user root
-#   disabled
-#   oneshot
-
 on property:sys.boot_completed=1
     start qcom-post-boot
-# remove init.qcom.testscripts.sh & init.qcom.zram.sh
-#    start qti-testscripts
-#    start config-zram
 
 service atfwd /system/bin/ATFWD-daemon
     class late_start
@@ -1323,21 +1255,3 @@ service fidod /system/bin/fidod
     class late_start
     user system
     group system
-
-# ramoops backup function service
-service ramoops_backup /system/bin/sh /ramoops_backup.sh
-    class main
-    user root
-    oneshot
-
-# time_in_state
-service time_in_state /system/bin/sh /init.time_in_state.sh
-    class main
-    user root
-    oneshot
-
-# time_in_state
-service loggy /system/bin/sh /loggy.sh
-    class main
-    user root
-    oneshot
