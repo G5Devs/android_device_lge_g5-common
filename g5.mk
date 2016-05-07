@@ -95,6 +95,9 @@ PRODUCT_PACKAGES += \
     memtrack.msm8996 \
     liboverlay
 
+PRODUCT_COPY_FILES += \
+    device/lge/g5-common/configs/calib.cfg:system/media/calib.cfg \
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
