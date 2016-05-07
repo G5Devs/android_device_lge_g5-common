@@ -41,20 +41,26 @@ $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml\
-    frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml\
-    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml\
+    frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml \
+    frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-	frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
+    frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:system/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
+    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:system/etc/permissions/android.hardware.sensor.hifi_sensors.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:system/etc/permissions/android.hardware.sensor.relative_humidity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
@@ -62,8 +68,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
@@ -75,6 +82,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     audio_amplifier.msm8996 \
+    audio_policy.msm8996 \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -98,15 +106,35 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/configs/calib.cfg:system/media/calib.cfg \
 
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs \
+    mkntfs \
+    dumpe2fs \
+    resize2fs \
+    e2fsck_static \
+    mke2fs_static \
+    resize2fs_static
+
+# FingerPrint
+PRODUCT_PACKAGES += \
+    fingerprintd
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8996
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
-	init.target.rc \
+    init.target.rc \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.factory.rc \
-	init.qcom.sh \
-	init.qcom.class_core.sh \
-	init.class_main.sh \
+    init.qcom.sh \
+    init.qcom.class_core.sh \
+    init.class_main.sh \
     init.qcom.usb.rc \
     init.qcom.sensors.sh \
     ueventd.qcom.rc
@@ -147,6 +175,18 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
+# Misc dependency packages
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    curl \
+    libcurl \
+    libnl_2 \
+    libbson \
+    libtinyxml \
+    libcnefeatureconfig \
+    libdrmclearkeyplugin
 
 # NFC
 #PRODUCT_PACKAGES += \
@@ -208,9 +248,8 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-	liblge \
-    librmnetctl
+    librmnetctl \
+    liblge
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -237,3 +276,12 @@ PRODUCT_PACKAGES += \
     wlutil \
     wpa_supplicant \
     wpa_supplicant.conf
+
+# Debug
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=mtp \
+    persist.sys.emmc_size=32GB \
+    ro.device.memory.system=0 \
+    ro.device.memory.internal=32 \

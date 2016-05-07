@@ -34,6 +34,8 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_BOARD_PLATFORM := msm8996
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 
+TARGET_CPU_CORTEX_A53 := true
+TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
 # Bootloader
@@ -43,7 +45,7 @@ TARGET_NO_BOOTLOADER := true
 # Kernel
 BOARD_DTBTOOL_ARGS := -3
 BOARD_KERNEL_BASE := 0x00078000
-BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=16M@0-0xffffffff androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=20M@0-0xffffffff androidboot.hardware=qcom dhash_entries=131072 ihash_entries=131072 androidboot.bootdevice=624000.ufshc androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02200000 --tags_offset 0x02000000
@@ -54,8 +56,26 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 # Audio
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_HDMI_EDID := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_MULTIPLE_TUNNEL := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+BOARD_SUPPORTS_SOUND_TRIGGER := false
 BOARD_USES_ALSA_AUDIO := true
-USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -67,17 +87,24 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Display
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
+TARGET_SWV8_DISK_ENCRYPTION := false
 
-HAVE_ADRENO_SOURCE:= false
-OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+# GPS
+TARGET_GPS_HAL_PATH := $(COMMON_PATH)/gps
+TARGET_PROVIDES_GPS_LOC_API := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
@@ -110,6 +137,9 @@ BOARD_USES_QC_TIME_SERVICES := true
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 
+# RIL
+TARGET_RIL_VARIANT := caf
+
 # SELinux policies
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
@@ -123,6 +153,7 @@ BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_AP      := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcmdhd.bin"
 
 # inherit from the proprietary version
