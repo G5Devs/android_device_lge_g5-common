@@ -51,13 +51,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=true \
     ro.lge.lcd_default_brightness=156 \
     ro.qcom.ad.calib.data=/system/media/display/calib.cfg \
     ro.qcom.ad.sensortype=1 \
     ro.qcom.ad=1 \
     ro.qualcomm.cabl=0 \
-    ro.sf.lcd_density=640
+    ro.sf.lcd_density=640 \
+    debug.sf.disable_hwc=1
 
 # Fluence
 PRODUCT_PROPERTY_OVERRIDES += \
