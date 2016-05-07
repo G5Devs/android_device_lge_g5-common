@@ -42,10 +42,6 @@ TARGET_USES_64_BIT_BINDER := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8996
 TARGET_NO_BOOTLOADER := true
-TARGET_USES_C2D_COMPOSITION := true
-
-# Block based OTA
-BLOCK_BASED_OTA := false
 
 # Kernel
 BOARD_DTBTOOL_ARGS := -3
@@ -99,7 +95,6 @@ BOARD_USES_ALSA_AUDIO := true
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/g5-common/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/lge/g5-common/bluetooth/libbt_vndcfg.txt
-
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
@@ -119,7 +114,7 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API := true
+TARGET_USES_NEW_ION_API :=true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 
@@ -140,12 +135,9 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 # Keystore
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
-# MDTP (Mobile Device Theft Protection)
-TARGET_USE_MDTP := true
-
 # NFC
-BOARD_NFC_CHIPSET := pn547
-BOARD_NFC_DEVICE := "/dev/pn547"
+BOARD_NFC_CHIPSET := pn548
+BOARD_NFC_DEVICE := "/dev/pn548"
 
 # Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -159,6 +151,7 @@ BOARD_USES_QC_TIME_SERVICES := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += device/lge/g5-common/sepolicy
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_msm
@@ -176,6 +169,7 @@ BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_AP      := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcmdhd.bin"
 
 # inherit from the proprietary version

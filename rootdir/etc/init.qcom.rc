@@ -27,7 +27,7 @@
 
 import init.qcom.usb.rc
 import init.target.rc
-#import init.qcom.factory.rc
+import init.qcom.factory.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -35,11 +35,33 @@ on early-init
 
 on init
     # Set permissions for persist partition
-    mkdir /persist 0771 system system
+    #mkdir /persist 0771 system system
 
     # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+    #symlink /sdcard /mnt/sdcard
+    #symlink /sdcard /storage/sdcard0
+    # Set permissions for persist partition
+    mkdir /persist-lg 0771 system system
+    mkdir /mpt 0755 system system
+    mkdir /storage 0751 system sdcard_r
+
+    # setup_fs
+    wait /dev/block/bootdevice/by-name/userdata
+    wait /dev/block/bootdevice/by-name/cache
+    wait /dev/block/bootdevice/by-name/persist
+    wait /dev/block/bootdevice/by-name/mpt
+    wait /dev/block/bootdevice/by-name/sns
+    wait /dev/block/bootdevice/by-name/drm
+    exec u:r:setup_fs:s0 -- /sbin/setup_fs_static \
+        /dev/block/bootdevice/by-name/cust \
+        /dev/block/bootdevice/by-name/OP \
+        /dev/block/bootdevice/by-name/mpt \
+        /dev/block/bootdevice/by-name/userdata \
+        /dev/block/bootdevice/by-name/cache \
+        /dev/block/bootdevice/by-name/sns \
+        /dev/block/bootdevice/by-name/drm \
+        /dev/block/bootdevice/by-name/persist \
+        no_reboot
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/vm/max_map_count 1000000
@@ -54,7 +76,7 @@ on early-boot
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
-    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
+    #exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
     write /sys/block/dm-0/queue/read_ahead_kb 2048
 
@@ -571,10 +593,11 @@ service iop /system/bin/iop
     group root
     disabled
 
-service qcomsysd /system/bin/qcom-system-daemon
-    class main
-    user root
-    group root qcom_diag
+# TODO: This MUST be disabled not use 'qcom system daemon' in LGE platform.
+#service qcomsysd /system/bin/qcom-system-daemon
+#    class main
+#    user root
+#    group root qcom_diag
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -597,8 +620,8 @@ on property:persist.sys.ssr.enable_ramdumps=1
 on property:persist.sys.ssr.enable_ramdumps=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
 
-on property:sys.boot_completed=1
-    write /dev/kmsg "Boot completed "
+#on property:sys.boot_completed=1
+    #write /dev/kmsg "Boot completed "
 
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
