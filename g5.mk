@@ -262,7 +262,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant.conf \
     wpa_supplicant
 
 PRODUCT_COPY_FILES += \
@@ -270,15 +269,7 @@ PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
     device/lge/g5-common/wifi/hostapd.deny:system/etc/wifi/hostapd.deny \
     device/lge/g5-common/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
-    device/lge/g5-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     device/lge/g5-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/lge/g5-common/wifi/wpa_supplicant_wcn.conf:system/etc/wifi/wpa_supplicant_wcn.conf
-
-PRODUCT_COPY_FILES += \
-    device/lge/g5-common/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat
-
-PRODUCT_PACKAGES += \
-    wcnss_service
 
 # Misc dependency packages
 PRODUCT_PACKAGES += \
