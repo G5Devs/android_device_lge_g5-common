@@ -267,6 +267,7 @@ PRODUCT_COPY_FILES += \
     device/lge/g5-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
     device/lge/g5-common/wifi/hostapd.deny:system/etc/wifi/hostapd.deny \
     device/lge/g5-common/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
+    device/lge/g5-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/lge/g5-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
 
 # Misc dependency packages
