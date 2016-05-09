@@ -233,7 +233,9 @@ PRODUCT_PACKAGES += \
     init.class_main.sh \
     init.qcom.usb.rc \
     init.qcom.sensors.sh \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh
 
 # RIL
 PRODUCT_PACKAGES += \
