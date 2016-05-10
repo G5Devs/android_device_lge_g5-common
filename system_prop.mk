@@ -57,6 +57,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.ad=1 \
     ro.qualcomm.cabl=0 \
     ro.sf.lcd_density=640 \
+    sdm.perf_hint_window=50 \
     debug.sf.disable_hwc=1
 
 # Fluence
