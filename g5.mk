@@ -106,7 +106,6 @@ PRODUCT_PACKAGES += \
     gralloc.msm8996 \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
-    hdmi_cec.msm8996 \
     liboverlay
 
 PRODUCT_COPY_FILES += \
