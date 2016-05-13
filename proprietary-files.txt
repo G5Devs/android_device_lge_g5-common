@@ -11,6 +11,7 @@ bin/check_data_mount.sh
 bin/cnss-daemon
 bin/diag_callback_sample
 bin/energy-awareness
+bin/fingerprintd
 bin/fm_qsoc_patches
 bin/fmconfig
 bin/fpc_early_loader
@@ -110,6 +111,8 @@ framework/qcrilhook.jar
 framework/QPerformance.jar
 framework/qti-telephony-common.jar
 lib64/hw/consumerir.msm8996.so
+lib64/hw/fingerprint.default.so
+lib64/hw/gps.default.so
 lib64/hw/lgkm.default.so
 lib64/hw/lgkm.msm8996.so
 lib64/hw/nfc_lg.default.so
@@ -128,6 +131,7 @@ lib64/libloc_api_v02.so
 lib64/libloc_core.so
 lib64/libloc_ds_api.so
 lib64/libloc_eng.so
+lib64/libn2pm.so
 lib64/libnfc-nxp-nci.so
 lib64/libOmxVpp.so
 lib64/libq3d.so
@@ -135,6 +139,8 @@ lib64/libqti-iop.so
 lib64/libqti_performance.so
 lib64/libril.so
 lib64/librilutils.so
+lib64/libsdmcore.so
+lib64/libsdmutils.so
 lib64/libuicc.so
 lib64/libvss_bsp_qcci.so
 lib64/libvss_common_core.so
@@ -151,6 +157,8 @@ lib64/libvss_resim_idl.so
 lib64/libvss_resim_iface.so
 lib/hw/camera.msm8996.so
 lib/hw/consumerir.msm8996.so
+lib/hw/fingerprint.default.so
+lib/hw/gps.default.so
 lib/hw/lgkm.default.so
 lib/hw/lgkm.msm8996.so
 lib/hw/nfc_lg.default.so
@@ -175,6 +183,7 @@ lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libmorpho_image_stab31.so
 lib/libmorpho_superzoom.so
+lib/libn2pm.so
 lib/libnfc-nxp-nci.so
 lib/libOmxVpp.so
 lib/libq3d.so
@@ -182,6 +191,8 @@ lib/libqomx_core.so
 lib/libqti_performance.so
 lib/libril.so
 lib/librilutils.so
+lib/libsdmcore.so
+lib/libsdmutils.so
 lib/libuicc.so
 lib/libVDBase.so
 lib/libVDLowLightAPI.so
