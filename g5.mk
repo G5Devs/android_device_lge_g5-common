@@ -144,10 +144,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/g5-common/configs/sec_config:system/etc/sec_config
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    keystore.msm8996
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8996
