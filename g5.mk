@@ -126,10 +126,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fingerprintd
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8996
-
 # IPACM
 PRODUCT_PACKAGES += \
     IPACM_cfg.xml \
