@@ -135,9 +135,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_1="" \
     persist.rild.nitz_short_ons_2="" \
     persist.rild.nitz_short_ons_3="" \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.add_power_save=1 \
+    ro.ril.telephony.mqanelements=5 \
     ril.subscription.types=NV,RUIM \
-    rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
-    ro.telephony.ril_class=LgeLteRIL
+    rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
