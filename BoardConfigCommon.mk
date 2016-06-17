@@ -126,6 +126,10 @@ BOARD_RIL_CLASS := ../../../$(COMMON_PATH)/ril/
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
+# Vendor init
+TARGET_INIT_VENDOR_LIB := libinit_g5
+TARGET_RECOVERY_DEVICE_MODULES := libinit_g5
+
 # Wi-Fi
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WLAN_DEVICE           := bcmdhd
