@@ -231,9 +231,9 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-    liblge \
-    librmnetctl
+    librmnetctl \
+    libtinyxml2 \
+    libxml2
 
 # Sensors
 PRODUCT_COPY_FILES += \

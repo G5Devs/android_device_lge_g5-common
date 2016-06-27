@@ -665,8 +665,6 @@ bin/qmuxd
 bin/radish
 bin/rmt_storage
 framework/qti-telephony-common.jar
-lib64/libril.so
-lib64/librilutils.so
 lib64/libuicc.so
 lib64/libvss_bsp_qcci.so
 lib64/libvss_common_core.so
@@ -681,8 +679,6 @@ lib64/libvss_nv_iface.so
 lib64/libvss_resim_core.so
 lib64/libvss_resim_idl.so
 lib64/libvss_resim_iface.so
-lib/libril.so
-lib/librilutils.so
 lib/libuicc.so
 lib/libvss_common_core.so
 lib/libvss_common_idl.so
