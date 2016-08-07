@@ -25,3 +25,6 @@
 /sns                        u:object_r:sensors_data_file:s0
 /sns/cal(/.*)?              u:object_r:sensors_data_file:s0
 /persist-lg/sensors(/.*)?   u:object_r:sensors_persist_file:s0
+
+# tap2wake
+/sys/devices/virtual/input/lge_touch/tap2wake         u:object_r:touchpanel_sysfs:s0
