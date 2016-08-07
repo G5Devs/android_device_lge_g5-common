@@ -590,11 +590,7 @@ static int camera_get_number_of_cameras(void)
     ALOGV("%s", __FUNCTION__);
     if (check_vendor_module())
         return 0;
-#ifdef FORCE_NUMBER_OF_CAMERAS
-    return FORCE_NUMBER_OF_CAMERAS;
-#else
     return gVendorModule->get_number_of_cameras();
-#endif
 }
 
 static int camera_get_camera_info(int camera_id, struct camera_info *info)
