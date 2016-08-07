@@ -92,6 +92,9 @@ persist.sensors.wul_thresh2=15
 persist.sensors.wul_delay=3000
 persist.sensors.onhand.en=0
 
+# Storage
+ro.sdcardfs.enable=true
+
 # Time services
 persist.timed.enable=true
 
