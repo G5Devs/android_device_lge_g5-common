@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013-2014 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Gesture shortcuts -->
+    <string name="touchscreen_up_gesture_title">Swipe up</string>
+    <string name="touchscreen_up_gesture_summary">Swipe up to turn volume up</string>
+
+    <string name="touchscreen_down_gesture_title">Swipe down</string>
+    <string name="touchscreen_fown_gesture_summary">Swipe down to turn volume down</string>
+
+    <string name="touchscreen_right_gesture_title">Swipe right</string>
+    <string name="touchscreen_right_gesture_summary">Swipe right for next track</string>
+
+    <string name="touchscreen_left_gesture_title">Swipe left</string>
+    <string name="touchscreen_left_gesture_summary">Swipe left for previous track</string>
+</resources>
