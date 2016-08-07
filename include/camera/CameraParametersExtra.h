@@ -37,14 +37,14 @@ const char CameraParameters::FPS_RANGE_SYSTEM_PROPERTY_CAMERA_REAR[] = "persist.
 const char CameraParameters::FPS_SLOW_MOTION[] = "120"; \
 const char CameraParameters::FPS_TIME_LAPSE_1P[] = "1"; \
 const char CameraParameters::FPS_TIME_LAPSE_2P[] = "2"; \
+const char CameraParameters::IS_LOWLIGHT[] = "is-lowlight"; \
 const char CameraParameters::ISO_100[] = "100"; \
-const char CameraParameters::ISO_1600[] = "1600"; \
 const char CameraParameters::ISO_200[] = "200"; \
-const char CameraParameters::ISO_3200[] = "3200"; \
 const char CameraParameters::ISO_400[] = "400"; \
 const char CameraParameters::ISO_800[] = "800"; \
+const char CameraParameters::ISO_1600[] = "1600"; \
+const char CameraParameters::ISO_3200[] = "3200"; \
 const char CameraParameters::ISO_AUTO[] = "auto"; \
-const char CameraParameters::IS_LOWLIGHT[] = "is-lowlight"; \
 const char CameraParameters::KEY_BEAUTY[] = "beautyshot"; \
 const char CameraParameters::KEY_BEAUTY_LEVEL[] = "beauty_level"; \
 const char CameraParameters::KEY_BURST_SHOT[] = "burst-shot"; \
@@ -57,13 +57,15 @@ const char CameraParameters::KEY_FILM_TYPE[] = "film_type"; \
 const char CameraParameters::KEY_HDR_MODE[] = "hdr-mode"; \
 const char CameraParameters::KEY_HFR[] = "video-hfr"; \
 const char CameraParameters::KEY_ISO[] = "iso"; \
+const char CameraParameters::KEY_ISO_MODE[] = "iso"; \
 const char CameraParameters::KEY_JPEG_THUMBNAIL_SIZE[] = "jpeg-thumbnail-size"; \
-const char CameraParameters::KEY_LGE_CAMERA[] = "lge-camera"; \
 const char CameraParameters::KEY_LG_EXPOSURE_COMPENSATION[] = "lg-ev-ctrl"; \
 const char CameraParameters::KEY_LG_EXPOSURE_COMPENSATION_MAX[] = "lg-ev-ctrl-max"; \
 const char CameraParameters::KEY_LG_EXPOSURE_COMPENSATION_MIN[] = "lg-ev-ctrl-min"; \
 const char CameraParameters::KEY_LG_EXPOSURE_COMPENSATION_STEP[] = "lg-ev-ctrl-step"; \
 const char CameraParameters::KEY_LG_WB[] = "lg-wb"; \
+const char CameraParameters::KEY_LGE_CAMERA[] = "lge-camera"; \
+const char CameraParameters::KEY_LGE_ISO_MODE[] = "lg-iso"; \
 const char CameraParameters::KEY_MANUAL_ISO[] = "lg-iso"; \
 const char CameraParameters::KEY_MANUAL_ISO_AUTO[] = "auto"; \
 const char CameraParameters::KEY_MANUAL_ISO_VALUES[] = "lg-iso-values"; \
@@ -80,6 +82,8 @@ const char CameraParameters::KEY_SHUTTER_SPEED[] = "shutter-speed"; \
 const char CameraParameters::KEY_SHUTTER_SPEED_SUPPOPRTED_VALUES[] = "shutter-speed-values"; \
 const char CameraParameters::KEY_SINGLE_ISP_OUTPUT_ENABLED[] = "single-isp-output-enabled"; \
 const char CameraParameters::KEY_STEADY_CAM[] = "steady_video"; \
+const char CameraParameters::KEY_SUPPORTED_ISO_MODES[] = "iso-values"; \
+const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values"; \
 const char CameraParameters::KEY_VIDEO_HDR_MODE[] = "video-hdr"; \
 const char CameraParameters::KEY_VIDEO_HDR_SUPPORTED[] = "video-hdr-supported"; \
 const char CameraParameters::KEY_VIDEO_SNAPSHOT_SIZE_SUPPORTED[] = "supported-live-snapshot-sizes"; \
@@ -98,13 +102,13 @@ const char CameraParameters::METER_MODE_AVERAGE[] = "meter-average"; \
 const char CameraParameters::METER_MODE_CENTER[] = "meter-center"; \
 const char CameraParameters::METER_MODE_SPOT[] = "meter-spot"; \
 const char CameraParameters::ONE_STR[] = "1"; \
-const char CameraParameters::PARAMETER_SUPERZOOM[] = "superzoom"; \
-const char CameraParameters::PARAMETER_VALUE_OFF[] = "off"; \
-const char CameraParameters::PARAMETER_VALUE_ON[] = "on"; \
 const char CameraParameters::PARAM_VIEW_MODE_CLEAN[] = "clean"; \
 const char CameraParameters::PARAM_VIEW_MODE_MANUAL_CAMERA[] = "manual"; \
 const char CameraParameters::PARAM_VIEW_MODE_MANUAL_VIDEO[] = "manual_video"; \
 const char CameraParameters::PARAM_VIEW_MODE_NORMAL[] = "normal"; \
+const char CameraParameters::PARAMETER_SUPERZOOM[] = "superzoom"; \
+const char CameraParameters::PARAMETER_VALUE_OFF[] = "off"; \
+const char CameraParameters::PARAMETER_VALUE_ON[] = "on"; \
 const char CameraParameters::PREVIEW_FORMAT_NV12[] = "nv12-venus"; \
 const char CameraParameters::PREVIEW_FORMAT_YUV420[] = "yuv420sp"; \
 const char CameraParameters::PREVIEW_FPS_RANGE_DEFAULT_CAMCORDER[] = "15000,30000"; \
@@ -119,9 +123,9 @@ const char CameraParameters::SIZE_HD_720P[] = "1280x720"; \
 const char CameraParameters::STEADY_VALUE_OFF[] = "off"; \
 const char CameraParameters::STEADY_VALUE_ON[] = "on"; \
 const char CameraParameters::TIMER_0_SEC[] = "0"; \
-const char CameraParameters::TIMER_10_SEC[] = "10"; \
 const char CameraParameters::TIMER_2_SEC[] = "2"; \
 const char CameraParameters::TIMER_3_SEC[] = "3"; \
+const char CameraParameters::TIMER_10_SEC[] = "10"; \
 const char CameraParameters::TWO_STR[] = "2"; \
 const char CameraParameters::USE_CUR_VALUE[] = "cur_value"; \
 const char CameraParameters::VALUE_NOT_FOUND[] = "not found"; \
@@ -130,12 +134,7 @@ const char CameraParameters::VALUE_VIDEO_HDR_ON[] = "on"; \
 const char CameraParameters::VIDEO_3840_BY_2160[] = "3840x2160"; \
 const char CameraParameters::ZERO_STR[] = "0"; \
 const char CameraParameters::ZSL_OFF[] = "off"; \
-const char CameraParameters::ZSL_ON[] = "on"; \
-const char CameraParameters::KEY_LGE_CAMERA[] = "lge-camera"; \
-const char CameraParameters::KEY_ISO_MODE[] = "iso"; \
-const char CameraParameters::KEY_SUPPORTED_ISO_MODES[] = "iso-values"; \
-const char CameraParameters::KEY_LGE_ISO_MODE[] = "lg-iso"; \
-const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
+const char CameraParameters::ZSL_ON[] = "on";
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char BURST_SHOT_OFF[]; \
@@ -160,14 +159,14 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char FPS_SLOW_MOTION[]; \
     static const char FPS_TIME_LAPSE_1P[]; \
     static const char FPS_TIME_LAPSE_2P[]; \
+    static const char IS_LOWLIGHT[]; \
     static const char ISO_100[]; \
-    static const char ISO_1600[]; \
     static const char ISO_200[]; \
-    static const char ISO_3200[]; \
     static const char ISO_400[]; \
     static const char ISO_800[]; \
+    static const char ISO_1600[]; \
+    static const char ISO_3200[]; \
     static const char ISO_AUTO[]; \
-    static const char IS_LOWLIGHT[]; \
     static const char KEY_BEAUTY[]; \
     static const char KEY_BEAUTY_LEVEL[]; \
     static const char KEY_BURST_SHOT[]; \
@@ -180,13 +179,15 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char KEY_HDR_MODE[]; \
     static const char KEY_HFR[]; \
     static const char KEY_ISO[]; \
+    static const char KEY_ISO_MODE[]; \
     static const char KEY_JPEG_THUMBNAIL_SIZE[]; \
-    static const char KEY_LGE_CAMERA[]; \
     static const char KEY_LG_EXPOSURE_COMPENSATION[]; \
     static const char KEY_LG_EXPOSURE_COMPENSATION_MAX[]; \
     static const char KEY_LG_EXPOSURE_COMPENSATION_MIN[]; \
     static const char KEY_LG_EXPOSURE_COMPENSATION_STEP[]; \
     static const char KEY_LG_WB[]; \
+    static const char KEY_LGE_CAMERA[]; \
+    static const char KEY_LGE_ISO_MODE[]; \
     static const char KEY_MANUAL_ISO[]; \
     static const char KEY_MANUAL_ISO_AUTO[]; \
     static const char KEY_MANUAL_ISO_VALUES[]; \
@@ -203,6 +204,8 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char KEY_SHUTTER_SPEED_SUPPOPRTED_VALUES[]; \
     static const char KEY_SINGLE_ISP_OUTPUT_ENABLED[]; \
     static const char KEY_STEADY_CAM[]; \
+    static const char KEY_SUPPORTED_ISO_MODES[]; \
+    static const char KEY_SUPPORTED_LGE_ISO_MODES[]; \
     static const char KEY_VIDEO_HDR_MODE[]; \
     static const char KEY_VIDEO_HDR_SUPPORTED[]; \
     static const char KEY_VIDEO_SNAPSHOT_SIZE_SUPPORTED[]; \
@@ -221,13 +224,13 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char METER_MODE_CENTER[]; \
     static const char METER_MODE_SPOT[]; \
     static const char ONE_STR[]; \
-    static const char PARAMETER_SUPERZOOM[]; \
-    static const char PARAMETER_VALUE_OFF[]; \
-    static const char PARAMETER_VALUE_ON[]; \
     static const char PARAM_VIEW_MODE_CLEAN[]; \
     static const char PARAM_VIEW_MODE_MANUAL_CAMERA[]; \
     static const char PARAM_VIEW_MODE_MANUAL_VIDEO[]; \
     static const char PARAM_VIEW_MODE_NORMAL[]; \
+    static const char PARAMETER_SUPERZOOM[]; \
+    static const char PARAMETER_VALUE_OFF[]; \
+    static const char PARAMETER_VALUE_ON[]; \
     static const char PREVIEW_FORMAT_NV12[]; \
     static const char PREVIEW_FORMAT_YUV420[]; \
     static const char PREVIEW_FPS_RANGE_DEFAULT_CAMCORDER[]; \
@@ -242,9 +245,9 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char STEADY_VALUE_OFF[]; \
     static const char STEADY_VALUE_ON[]; \
     static const char TIMER_0_SEC[]; \
-    static const char TIMER_10_SEC[]; \
     static const char TIMER_2_SEC[]; \
     static const char TIMER_3_SEC[]; \
+    static const char TIMER_10_SEC[]; \
     static const char TWO_STR[]; \
     static const char USE_CUR_VALUE[]; \
     static const char VALUE_NOT_FOUND[]; \
@@ -253,12 +256,7 @@ const char CameraParameters::KEY_SUPPORTED_LGE_ISO_MODES[] = "lg-iso-values";
     static const char VIDEO_3840_BY_2160[]; \
     static const char ZERO_STR[]; \
     static const char ZSL_OFF[]; \
-    static const char ZSL_ON[]; \
-    static const char KEY_LGE_CAMERA[]; \
-    static const char KEY_ISO_MODE[]; \
-    static const char KEY_SUPPORTED_ISO_MODES[]; \
-    static const char KEY_LGE_ISO_MODE[]; \
-    static const char KEY_SUPPORTED_LGE_ISO_MODES[];
+    static const char ZSL_ON[];
 
 /* TODO: Add int compatibility
 #define CAMERA_PARAMETERS_EXTRA_C \
